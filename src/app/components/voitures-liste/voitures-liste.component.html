@@ -1,0 +1,10 @@
+<div class="top-bar" style="width:100vw">
+    <label for="filtre-voiture">Voiture</label>
+    <input type="text" placeholder="recherche...">
+    <button>Ajouter</button>
+</div>
+<div class="liste">    
+    <li *ngFor="let voiture of voitures;">
+        <app-voitures-liste-item [voiture]="voiture"></app-voitures-liste-item>
+    </li>
+</div>
