@@ -15,7 +15,13 @@ export class VoituresListeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.voitures = this.service.getVoitures();
+    // this.voitures = this.service.getVoitures();
+    this.service.getVoitures().subscribe(
+      (res) => {
+        console.log(res);
+        this.voitures = res;
+      }
+    )
   }
 
 
