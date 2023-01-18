@@ -1,0 +1,59 @@
+<div class="auth-wrapper">
+    <form
+      class="form-signin"
+      [formGroup]="inscriptionForm"
+      (ngSubmit)="registerUser()"
+    >
+      <h3 class="h3 mb-3 font-weight-normal text-center">Veuillez vous inscrire</h3>
+      <div class="form-group">
+        <label>Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Entrer nom"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Adresse mail</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Entrer adresse email"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input
+          type="phone"
+          class="form-control"
+          formControlName="telephone"
+          placeholder="Entrer un numéro de téléphone"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Adresse</label>
+        <input
+          class="form-control"
+          formControlName="adresse"
+          placeholder="Entrer adresse"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Mot de passe"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-block btn-primary">S'inscrire</button>
+    </form>
+  </div>

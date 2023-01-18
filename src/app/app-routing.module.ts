@@ -3,9 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormulaireVoiturePageComponent } from './components/formulaire-voiture-page/formulaire-voiture-page.component';
 import { ListeVoituresPageComponent } from './components/liste-voitures-page/liste-voitures-page.component';
 
+import { HelloworldComponent } from './components/helloworld/helloworld.component';
+import { LoginComponent } from './components/login/login.component';
+import { InscriptionComponent } from './components/inscription/inscription.component';
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   { path: 'voitures', component: ListeVoituresPageComponent },
   { path: 'voitures/new', component: FormulaireVoiturePageComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'inscription', component: InscriptionComponent },
+  { path: 'hello', component: HelloworldComponent , canActivate: [AuthGuard] },
 ];
 
 @NgModule({
