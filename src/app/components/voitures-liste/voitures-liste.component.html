@@ -3,7 +3,10 @@
     <input type="text" placeholder="recherche...">
     <button>Ajouter</button>
 </div>
-<div class="liste">    
+<div class="liste">
+    <p *ngIf="voitures.length == 0">
+        Pas de voitures enregistrées. Voulez-vous <a [routerLink]="'/voitures/new'">Ajouter une voiture</a> ?
+    </p>
     <li *ngFor="let voiture of voitures;">
         <app-voitures-liste-item [voiture]="voiture"></app-voitures-liste-item>
     </li>

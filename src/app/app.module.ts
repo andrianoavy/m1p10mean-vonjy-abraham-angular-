@@ -10,6 +10,7 @@ import { ListeVoituresPageComponent } from './components/liste-voitures-page/lis
 import { VoituresListeComponent } from './components/voitures-liste/voitures-liste.component';
 import { VoituresListeItemComponent } from './components/voitures-liste-item/voitures-liste-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormulaireVoiturePageComponent } from './components/formulaire-voiture-page/formulaire-voiture-page.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     ListeVoituresPageComponent,
     VoituresListeComponent,
-    VoituresListeItemComponent
+    VoituresListeItemComponent,
+    FormulaireVoiturePageComponent
   ],
   imports: [
     BrowserModule,

@@ -17,10 +17,13 @@ export class VoituresListeComponent implements OnInit{
   ngOnInit(): void {
     this.service.getVoitures().subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         this.voitures = res;
       }
     )
+  }
+  isVoituresEmpty(){
+    return this.voitures.length == 0;
   }
 
 
