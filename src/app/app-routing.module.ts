@@ -9,11 +9,10 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'voitures', component: ListeVoituresPageComponent },
-  { path: 'voitures/new', component: FormulaireVoiturePageComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'inscription', component: InscriptionComponent },
+  { path: 'voitures', component: ListeVoituresPageComponent , canActivate: [AuthGuard]},
   { path: 'hello', component: HelloworldComponent , canActivate: [AuthGuard] },
 ];
 

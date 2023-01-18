@@ -1,13 +1,28 @@
-<div class="top-bar" style="width:100vw">
-    <label for="filtre-voiture">Voiture</label>
-    <input type="text" placeholder="recherche...">
-    <button>Ajouter</button>
+<div [ngStyle]="{'display':'inline-flex','justify-content':'space-around', 'width':'100vw'}">
+<div class="liste-container">
+    <div class="top-bar">
+        <label for="filtre-voiture">Voiture</label>
+        <input type="text" placeholder="Recherche..." [(ngModel)]="searchText" (keyup)="applyFilter($event)">
+        <button>Ajouter</button>
+    </div>
+    <div class="Liste" *ngIf="voituresObs | async as voitures; else loading">
+        <ul *ngIf="voitures.length > 0; else empty">
+            <li *ngFor="let voiture of voitures">
+                <app-voitures-liste-item [voiture]="voiture"></app-voitures-liste-item>
+            </li>
+        </ul>
+        <ng-template #empty>
+            <p>
+                Pas de voitures enregistrées.
+            </p>
+        </ng-template>
+    </div>
+    <ng-template #loading>
+        Chargement...
+    </ng-template>
+
 </div>
-<div class="liste">
-    <p *ngIf="voitures.length == 0">
-        Pas de voitures enregistrées. Voulez-vous <a [routerLink]="'/voitures/new'">Ajouter une voiture</a> ?
-    </p>
-    <li *ngFor="let voiture of voitures;">
-        <app-voitures-liste-item [voiture]="voiture"></app-voitures-liste-item>
-    </li>
+<div class="formulaire">
+    <app-formulaire-voiture-page (emitter)="send($event)"></app-formulaire-voiture-page>
+</div>
 </div>

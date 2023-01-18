@@ -19,6 +19,7 @@ import { HelloworldComponent } from './components/helloworld/helloworld.componen
 import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListeVoitureComponent } from './components/liste-voiture/liste-voiture.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormulaireVoiturePageComponent,
     HelloworldComponent,
     LoginComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    ListeVoitureComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,7 @@ export class AuthService {
         //   this.currentUser = res;
         //   this.router.navigate(['user-profile/' + res.msg._id]);
         // });
-        this.router.navigate(['hello']);
+        this.router.navigate(['voitures']);
       });
   }
 

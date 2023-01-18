@@ -9,21 +9,24 @@ import { AuthService } from "../services/auth.service";
   providedIn: 'root'
 })
 export class VoitureService {
+ 
   endpoint: string = environment.baseApiURL + '/voitures'
+  
 
   getVoitures(): Observable<any> {
     return this.http.get(this.endpoint).pipe(catchError(this.handleError))
   }
 
-  addVoitures(voiture: Voiture): Observable<any> {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.authService.getToken());
+  addVoiture(voiture: Voiture): Observable<any> {
 
-    return this.http.post(this.endpoint,voiture,{headers}).pipe(catchError(this.handleError))
+    return this.http.post(this.endpoint,voiture).pipe(catchError(this.handleError))
   }
 
   constructor(private http: HttpClient, private authService: AuthService) { }
+
+  findVoituresByString(searchText: string): Observable<any> {
+    return this.http.post(this.endpoint,searchText).pipe(catchError(this.handleError))
+  }
 
   // Error
   handleError(error: HttpErrorResponse) {
