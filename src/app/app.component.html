@@ -1,12 +1,21 @@
-<div [ngStyle]="{'display':'inline-flex','justify-content':'space-around', 'width':'100%'}"
-  >
-  <h5 class="my-0 mr-md-auto font-weight-normal">Angular Mean Auth</h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark">User Profile</a>
-    <a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/login">Identification</a>
-  </nav>
-  <a *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active"
-    routerLinkActive="active" routerLink="/inscription">Inscription</a>
-  <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
-</div>
-<router-outlet></router-outlet>
+<nav *ngIf="this.authService.isLoggedIn">
+  <ul>
+    <li>
+      <strong>Mikara-Car</strong>
+    </li>
+  </ul>
+  <ul>
+    <li><a>Paiements</a></li>
+    <li><a (click)="logout()">Se déconnecter</a></li>
+  </ul>
+</nav>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer class="container-fluid"  *ngIf="this.authService.isLoggedIn">
+  <h6>Notre équipe</h6>
+  <ul>
+    <li>Vonjy Ranjelison</li>
+    <li>Abraham Ramilison</li>
+  </ul>
+</footer>

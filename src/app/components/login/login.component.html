@@ -1,25 +1,17 @@
-<div class="auth-wrapper">
-    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
-      <h3 class="h3 mb-3 font-weight-normal text-center">Veuillez vous identifier</h3>
-      <div class="form-group">
-        <label>Adresse mail:</label>
-        <input
-          type="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Entrer adresse mail"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label>Mot de passe</label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Mot de passe"
-        />
-      </div>
-      <button type="submit" class="btn btn-block btn-primary">S'identifier</button>
+<article [ngStyle]="{'max-width': '700px','margin':'2.5rem auto'}">
+  <div>
+    <hgroup>
+      <h1>Identification</h1>
+      <h2>Veuillez-vous identifier. Pas encore de compte Client? <a routerLink="/inscription">Inscrivez-vous!</a></h2>
+    </hgroup>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <label for="email">Adresse mail:</label>
+      <input type="email" id="email" formControlName="email" name="email" placeholder="Entrer adresse mail" autocomplete="email" aria-label="Adresse Email" required="">
+      <label for="password">Mot de passe</label>
+      <input type="password" formControlName="password" name="password" placeholder="******" aria-label="Mot de passe"
+        autocomplete="current-password" required="">
+      
+      <button type="submit" class="contrast" >S'identifier</button>
     </form>
   </div>
+</article>

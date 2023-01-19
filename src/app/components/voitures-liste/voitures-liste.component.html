@@ -3,7 +3,6 @@
         <div class="top-bar">
             <label for="filtre-voiture">Voiture</label>
             <input type="text" placeholder="Recherche..." [(ngModel)]="searchText" (keyup)="applyFilter($event)">
-            <button (click)="send('refresh')">Actualiser</button>
         </div>
         <div class="Liste" *ngIf="voituresObs | async as voitures; else loading">
             <ul *ngIf="voitures.length > 0; else empty">
