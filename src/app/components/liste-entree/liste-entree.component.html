@@ -1,29 +1,75 @@
 <div class="grid">
   <div class="titre"><h2>Liste des voitures dans le garage</h2></div>
-  <div class="insertion"></div>
+  <div class="modal"><h2>Ajouter une voiture dans le garage</h2></div>
 </div>
 
-<div>
+<div class="grid">
   <div class="liste">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Designation</th>
-            <th scope="col">Date d'entree</th>
-            <th scope="col">Date de sortie</th>
-            <th scope="col">Voiture</th>
-            <th scope="col">Detail</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of entrees">
-            <td>{{data.designation}}</td>
-            <td>{{data.dateEntree}}</td>
-            <td>{{data.dateSortie}}</td>
-            <td>{{data.voitureId}}</td>
-            <td><a href="#" role="button">Voir</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Designation</th>
+          <th scope="col">Date d'entree</th>
+          <th scope="col">Date de sortie</th>
+          <th scope="col">Voiture</th>
+          <th scope="col">Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of entrees">
+          <td>{{ data.designation }}</td>
+          <td>{{ data.dateEntree }}</td>
+          <td>{{ data.dateSortie }}</td>
+          <td>{{ data.voitureId }}</td>
+          <td><a href="#" role="button">Voir</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insertion">
+    <form class="form-insert-entree" [formGroup]="entreeForm" (ngSubmit)="insertEntree()">
+      <label for="desc">Description de l'entree en garage</label>
+      <input
+        type="text"
+        id="desc"
+        formControlName="designation"
+        placeholder="Description de l'entree en garage"
+        required
+      />
+      <!-- Grid -->
+      <div class="grid">
+        <!-- Markup example 1: input is inside label -->
+        <label for="dateEntree">
+          Date d'entree
+          <input
+            type="date"
+            id="dateEntree"
+            formControlName="dateEntree"
+            placeholder="Date d'entree"
+            required
+          />
+        </label>
+
+        <label for="dateSortie">
+          Date de sortie
+          <input
+            type="date"
+            id="dateSortie"
+            formControlName="dateSortie"
+            placeholder="Date de sortie"
+          />
+        </label>
+      </div>
+
+      <!-- Markup example 2: input is after label -->
+      <label for="voiture">Selectionnez une voiture</label>
+      <select id="voiture" formControlName="voitureId" required>
+        <option value="" selected>Selectionnez une voiture...</option>
+        <option *ngFor="let item of voitures" value="{{item._id}}">{{item.numImmatricul}}</option>
+      </select>
+      <!-- Button -->
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>
 </div>

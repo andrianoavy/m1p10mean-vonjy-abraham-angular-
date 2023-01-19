@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError,Observable,catchError } from 'rxjs';
 import { environment } from '../environments/environment';
-import { Voiture } from '../models/Voiture';
+import { Entree } from '../models/entree';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class EntreeService {
     return this.http.get(this.base_url+'/entrees').pipe(catchError(this.handleError));
   }
 
-  addEntree(voiture : Voiture):Observable<any>{
-    return this.http.post(this.base_url + '/entree',voiture).pipe(catchError(this.handleError));
+  addEntree(entree : Entree):Observable<any>{
+    return this.http.post(this.base_url + '/entree',entree).pipe(catchError(this.handleError));
   }
 
 
