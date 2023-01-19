@@ -21,6 +21,7 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeVoitureComponent } from './components/liste-voiture/liste-voiture.component';
 import { ListeEntreeComponent } from './components/liste-entree/liste-entree.component';
+import { ListeReparationComponent } from './liste-reparation/liste-reparation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ListeEntreeComponent } from './components/liste-entree/liste-entree.com
     LoginComponent,
     InscriptionComponent,
     ListeVoitureComponent,
-    ListeEntreeComponent
+    ListeEntreeComponent,
+    ListeReparationComponent
   ],
   imports: [
     BrowserModule,

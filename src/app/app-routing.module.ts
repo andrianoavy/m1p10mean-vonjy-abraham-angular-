@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ListeEntreeComponent } from './components/liste-entree/liste-entree.component';
+import { ListeReparationComponent } from './components/liste-reparation/liste-reparation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent },
   { path: 'voitures', component: ListeVoituresPageComponent , canActivate: [AuthGuard]},
   { path: 'hello', component: HelloworldComponent , canActivate: [AuthGuard] },
-  {path: 'entrees', component:ListeEntreeComponent, canActivate: [AuthGuard] }
+  { path: 'entrees', component:ListeEntreeComponent, canActivate: [AuthGuard] },
+  { path: 'reparation', component:ListeReparationComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({

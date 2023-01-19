@@ -21,7 +21,7 @@
           <td>{{ data.dateEntree }}</td>
           <td>{{ data.dateSortie }}</td>
           <td>{{ data.voitureId }}</td>
-          <td><a href="#" role="button">Voir</a></td>
+          <td><a [routerLink]="['/reparation']" [queryParams]="{entree_id: data._id}"  role="button">Voir</a></td>
         </tr>
       </tbody>
     </table>
