@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeVoitureComponent } from './components/liste-voiture/liste-voiture.component';
+import { ListeEntreeComponent } from './components/liste-entree/liste-entree.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ListeVoitureComponent } from './components/liste-voiture/liste-voiture.
     HelloworldComponent,
     LoginComponent,
     InscriptionComponent,
-    ListeVoitureComponent
+    ListeVoitureComponent,
+    ListeEntreeComponent
   ],
   imports: [
     BrowserModule,

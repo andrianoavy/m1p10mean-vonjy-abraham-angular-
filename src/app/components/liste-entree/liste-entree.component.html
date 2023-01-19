@@ -1,0 +1,29 @@
+<div class="grid">
+  <div class="titre"><h2>Liste des voitures dans le garage</h2></div>
+  <div class="insertion"></div>
+</div>
+
+<div>
+  <div class="liste">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Designation</th>
+            <th scope="col">Date d'entree</th>
+            <th scope="col">Date de sortie</th>
+            <th scope="col">Voiture</th>
+            <th scope="col">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of entrees">
+            <td>{{data.designation}}</td>
+            <td>{{data.dateEntree}}</td>
+            <td>{{data.dateSortie}}</td>
+            <td>{{data.voitureId}}</td>
+            <td><a href="#" role="button">Voir</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
