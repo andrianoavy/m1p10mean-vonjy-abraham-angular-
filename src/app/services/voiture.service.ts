@@ -25,7 +25,7 @@ export class VoitureService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   findVoituresByString(searchText: string): Observable<any> {
-    return this.http.post(this.endpoint,searchText).pipe(catchError(this.handleError))
+    return this.http.get(`${this.endpoint}?search=${searchText.trim()}`).pipe(catchError(this.handleError))
   }
 
   // Error
