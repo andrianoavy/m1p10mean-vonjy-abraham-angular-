@@ -13,9 +13,7 @@ import { Router } from '@angular/router';
 export class ListeEntreeComponent {
 
   entrees: any[];
-  entreesObs : Observable<any>;
   voitures:any[];
-  voituresObs : Observable<any>;
 
   entreeForm : FormGroup;
 
