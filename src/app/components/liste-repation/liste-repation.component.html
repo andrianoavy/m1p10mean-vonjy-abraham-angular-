@@ -1,0 +1,128 @@
+<div class="grid">
+  <div class="titre_liste">
+    <H2>
+      Designation : Reparation moteur<br />
+      Date : 12/01/2023<br />
+      Voiture : 1234 TSE
+    </H2>
+  </div>
+  <div class="titre_insertion"></div>
+</div>
+
+<div class="grid">
+    <div class="avancement"><h1>Avancement</h1></div>
+    <div class="ajout"><h1>Ajouter une reparation</h1></div>
+</div>
+
+<div class="grid">
+  <div class="liste">
+    <div class="grid">
+      <div class="todo" class="list-container">
+        <article>
+          <header><h2>En attente</h2></header>
+          <div class="todo-container column-container">
+            <div class="list" 
+            cdkDropList 
+            #todoList="cdkDropList" 
+            [cdkDropListData]="todos"
+            [cdkDropListConnectedTo]="[doneList]"
+             >
+              <article *ngFor="let todo of todos" cdkDrag>
+                <header>{{ todo.name }}</header>
+                {{ todo.category }}
+              </article>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="complete" class="list-container">
+        <article>
+          <header><h2>TerminE</h2></header>
+          <div class="done-container column-container">
+            <div class="list"
+            cdkDropList 
+            #doneList="cdkDropList" 
+            [cdkDropListData]="completed"
+            [cdkDropListConnectedTo]="[todoList]"
+            >
+              <article *ngFor="let complete of completed" cdkDrag>
+                <header>{{ complete.name }}</header>
+                {{ complete.category }}
+              </article>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="insertion">
+    <form class="form-insert-entree">
+      <label for="desc">Description de la reparation</label>
+      <input
+        type="text"
+        id="desc" 
+        formControlName="description"
+        placeholder="Description de la reparation"
+        required
+      />
+
+      <div class="grid">
+        <label for="descPrestation">
+            Description de la prestation
+          <input
+            type="text"
+            id="descPrestation"
+            formControlName="designationPrestation"
+            placeholder="Description de la prestation."
+            required
+          />
+        </label>
+
+        <label for="montantPrestation">
+            Montant de la prestation
+          <input type="number" id="montantPrestation" formControlName="montantPrestation" min="0" placeholder="Montant de la prestation" />
+        </label>
+      </div>
+
+      <div class="grid">
+        <label for="descAchat">
+            Description de la prestation
+          <input
+            type="text"
+            id="descAchat"
+            formControlName="designationAchat"
+            placeholder="Description de l'achat des pieces."
+            required
+          />
+        </label>
+
+        <label for="montantAchat">
+            Montant de la prestation
+          <input type="number" id="montantAchat" formControlName="montantAchat" min="0" placeholder="Montant de l'achat des pieces." />
+        </label>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid">
+        <!-- Markup example 1: input is inside label -->
+        <label for="dateEntree">
+            Date debut de la reparation
+          <input
+            type="date"
+            id="dateEntree"
+            formControlName="dateDebut"
+            placeholder="Date debut de la reparation"
+            required
+          />
+        </label>
+
+        <label for="dateSortie">
+            Date fin de la reparation
+          <input type="date" id="dateSortie" formControlName="dateFin" placeholder="Date fin de la reparation" />
+        </label>
+      </div>
+
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>
+</div>

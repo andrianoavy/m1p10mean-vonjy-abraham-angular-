@@ -20,8 +20,8 @@
           <td>{{ data.designation }}</td>
           <td>{{ data.dateEntree }}</td>
           <td>{{ data.dateSortie }}</td>
-          <td>{{ data.voitureId }}</td>
-          <td><a href="#" role="button">Voir</a></td>
+          <td>{{ data.voiture[0].numImmatricul }}   ({{ data.voiture[0].marque }})</td>
+          <td><a [routerLink]="['/reparation']" [queryParams]="{entree_id:data._id}" routerLinkActive="router-link-active" role="button">Voir</a></td>
         </tr>
       </tbody>
     </table>

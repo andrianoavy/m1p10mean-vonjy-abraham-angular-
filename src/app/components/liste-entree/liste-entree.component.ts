@@ -32,15 +32,13 @@ export class ListeEntreeComponent {
   }
 
   getAllEntrees(){
-    this.entreesObs = this.entree.findEntrees();
-    this.entreesObs.subscribe(result => {
+    this.entree.findEntrees().subscribe(result => {
       this.entrees = result.data;
     })
   }
 
   fetchVoitures() {
-    this.voituresObs = this.voitureServ.findVoitures();
-    this.voituresObs.subscribe(result => {
+    this.voitureServ.findVoitures().subscribe(result => {
       this.voitures = result;
     })
   }

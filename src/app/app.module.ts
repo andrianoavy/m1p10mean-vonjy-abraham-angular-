@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ListeVoituresPageComponent } from './components/liste-voitures-page/liste-voitures-page.component';
 import { VoituresListeComponent } from './components/voitures-liste/voitures-liste.component';
@@ -21,6 +22,10 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeVoitureComponent } from './components/liste-voiture/liste-voiture.component';
 import { ListeEntreeComponent } from './components/liste-entree/liste-entree.component';
+import { ListeRepationComponent } from './components/liste-repation/liste-repation.component';
+import { RouterModule } from '@angular/router';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,8 @@ import { ListeEntreeComponent } from './components/liste-entree/liste-entree.com
     LoginComponent,
     InscriptionComponent,
     ListeVoitureComponent,
-    ListeEntreeComponent
+    ListeEntreeComponent,
+    ListeRepationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,9 @@ import { ListeEntreeComponent } from './components/liste-entree/liste-entree.com
     MatSlideToggleModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([]),
+    DragDropModule
   ],
   providers: [
     {
