@@ -15,9 +15,11 @@ import { ReparationService } from 'src/app/services/reparation.service';
   styleUrls: ['./liste-repation.component.css'],
 })
 export class ListeRepationComponent {
-  entreeId: string = '';
+  entree_id: string = '';
 
   reparationForm : FormGroup;
+
+  reparations : any[];
 
   todos = [
     {
@@ -59,6 +61,7 @@ export class ListeRepationComponent {
 
   constructor(private routeActive: ActivatedRoute,public formBuilder: FormBuilder,private reparation: ReparationService) {
     this.reparationForm = this.formBuilder.group({
+      entreeId : [''],
       description : [''],
       designationPrestation :[''],
       montantPrestation :[''],
@@ -71,15 +74,20 @@ export class ListeRepationComponent {
 
   ngOnInit() {
     this.routeActive.queryParams.subscribe((params) => {
-      this.entreeId = params['entree_id'];
+      this.entree_id = params['entree_id'];
     });
   }
 
+  getAllEntrees(){
+    this.reparation.findReparation().subscribe(result => {
+      this.reparations = result.data;
+    })
+  }
 
   insertReparation(){
-    this.reparation.addReparation(this.reparationForm.value).subscribe(res=>{
-      this.reparationForm.reset();
-    })
+      this.reparation.addReparation(this.reparationForm.value).subscribe(res=>{
+        this.reparationForm.reset();
+      })
   }
 
   onDrop(event: CdkDragDrop<string[]>) {

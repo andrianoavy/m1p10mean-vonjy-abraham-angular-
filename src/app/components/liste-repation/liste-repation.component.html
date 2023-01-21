@@ -56,7 +56,8 @@
     </div>
   </div>
   <div class="insertion">
-    <form class="form-insert-entree">
+    <form class="form-insert-entree" [formGroup]="reparationForm" (ngSubmit)="insertReparation()">
+      <input type="hidden" formControlName="entreeId" [ngModel]="entree_id" >
       <label for="desc">Description de la reparation</label>
       <input
         type="text"
@@ -86,7 +87,7 @@
 
       <div class="grid">
         <label for="descAchat">
-            Description de la prestation
+            Description de l'achat des pieces
           <input
             type="text"
             id="descAchat"
@@ -97,7 +98,7 @@
         </label>
 
         <label for="montantAchat">
-            Montant de la prestation
+            Montant de l'achat
           <input type="number" id="montantAchat" formControlName="montantAchat" min="0" placeholder="Montant de l'achat des pieces." />
         </label>
       </div>

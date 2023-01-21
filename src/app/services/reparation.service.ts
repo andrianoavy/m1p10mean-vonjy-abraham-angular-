@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { throwError,Observable,catchError } from 'rxjs';
 import { Reparation } from '../models/reparation';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReparationService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private authService:AuthService) { }
 
   base_url: string = environment.baseApiURL+'/api/atelier';
 
