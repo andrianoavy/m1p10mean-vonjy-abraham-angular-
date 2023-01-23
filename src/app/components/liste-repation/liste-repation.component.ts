@@ -8,6 +8,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ReparationService } from 'src/app/services/reparation.service';
+import { Reparation } from 'src/app/models/reparation';
 
 @Component({
   selector: 'app-liste-repation',
@@ -19,45 +20,12 @@ export class ListeRepationComponent {
 
   reparationForm : FormGroup;
 
+  infoEntree : any[];
   reparations : any[];
 
-  todos = [
-    {
-      name: 'Angular',
-      category: 'Web Development',
-    },
-    {
-      name: 'Flexbox',
-      category: 'Web Development',
-    },
-    {
-      name: 'iOS',
-      category: 'App Development',
-    },
-    {
-      name: 'Java',
-      category: 'Software development',
-    },
-  ];
+  todos:Reparation[]=[];
 
-  completed = [
-    {
-      name: 'Android',
-      category: 'Mobile Development',
-    },
-    {
-      name: 'MongoDB',
-      category: 'Databases',
-    },
-    {
-      name: 'ARKit',
-      category: 'Augmented Reality',
-    },
-    {
-      name: 'React',
-      category: 'Web Development',
-    },
-  ];
+  completed:Reparation[]=[];
 
   constructor(private routeActive: ActivatedRoute,public formBuilder: FormBuilder,private reparation: ReparationService) {
     this.reparationForm = this.formBuilder.group({
@@ -76,22 +44,40 @@ export class ListeRepationComponent {
     this.routeActive.queryParams.subscribe((params) => {
       this.entree_id = params['entree_id'];
     });
+    this.getInfoEntree();
+    this.getAllReparation();
   }
 
-  getAllEntrees(){
-    this.reparation.findReparation().subscribe(result => {
-      this.reparations = result.data;
+  getInfoEntree(){
+    this.reparation.getInfoEntree(this.entree_id).subscribe(result=>{
+      this.infoEntree = result.data;
+    })
+  }
+
+  getAllReparation(){
+    this.reparation.findReparation(this.entree_id).subscribe(result => {
+      let data = result.data;
+      for(let i = 0; i < data.length;i++){
+        if(data[i].Etat == "Terminer"){
+          this.completed.push(data[i]);
+        }
+        else{
+          this.todos.push(data[i])
+        }
+      }
     })
   }
 
   insertReparation(){
       this.reparation.addReparation(this.reparationForm.value).subscribe(res=>{
+        this.getAllReparation();
         this.reparationForm.reset();
       })
   }
 
-  onDrop(event: CdkDragDrop<string[]>) {
+  onDrop(event: CdkDragDrop<Reparation[]>) {
     if (event.previousContainer === event.container) {
+      console.log('move :'+event.container.data);      
       moveItemInArray(
         event.container.data,
         event.previousIndex,
@@ -104,6 +90,17 @@ export class ListeRepationComponent {
         event.previousIndex,
         event.currentIndex
       );
+
+      const dataTerminer = event.container.data;
+      for(let i = 0; i < dataTerminer.length;i++){
+        const body = {
+          "entreeId": this.entree_id,
+          "reparationId": dataTerminer[i].reparationId
+        };
+        this.reparation.updateReparation(body).subscribe(res=>{
+          console.log("updated");      
+        });
+      }
     }
   }
 }

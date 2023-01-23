@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { throwError,Observable,catchError } from 'rxjs';
@@ -14,14 +14,23 @@ export class ReparationService {
 
   base_url: string = environment.baseApiURL+'/api/atelier';
 
-  findReparation(): Observable<any>{
-    return this.http.get(this.base_url+'/reparations').pipe(catchError(this.handleError));
+  findReparation(entree_id:any): Observable<any>{
+    let params = new HttpParams().set('id',entree_id)
+    return this.http.get(this.base_url+'/entree/reparations',{params: params }).pipe(catchError(this.handleError));
   }
 
   addReparation(reparation : Reparation):Observable<any>{
     return this.http.post(this.base_url + '/reparation',reparation).pipe(catchError(this.handleError));
   }
 
+  updateReparation(dataBody:any):Observable<any>{
+    return this.http.put(this.base_url + '/update/reparation',dataBody).pipe(catchError(this.handleError));
+  }
+
+  getInfoEntree(entree_id:any):Observable<any>{
+    let params = new HttpParams().set('id',entree_id);
+    return this.http.get(this.base_url+'/entree/info',{params: params }).pipe(catchError(this.handleError));
+  }
 
 
   // Error

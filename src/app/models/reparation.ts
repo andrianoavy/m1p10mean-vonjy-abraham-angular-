@@ -9,3 +9,8 @@ export class Reparation {
     dateFin!:Date;
     etat!:String;
 }
+
+// export class Reparation {
+//     name!: String;
+//     category!: String;
+// }

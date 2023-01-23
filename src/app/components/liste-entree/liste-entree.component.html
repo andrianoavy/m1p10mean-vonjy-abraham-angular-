@@ -18,8 +18,8 @@
       <tbody>
         <tr *ngFor="let data of entrees">
           <td>{{ data.designation }}</td>
-          <td>{{ data.dateEntree }}</td>
-          <td>{{ data.dateSortie }}</td>
+          <td>{{ data.dateEntree | date:'dd/MM/yyyy'}}</td>
+          <td>{{ data.dateSortie | date:'dd/MM/yyyy'}}</td>
           <td>{{ data.voiture[0].numImmatricul }}   ({{ data.voiture[0].marque }})</td>
           <td><a [routerLink]="['/reparation']" [queryParams]="{entree_id:data._id}" routerLinkActive="router-link-active" role="button">Voir</a></td>
         </tr>
