@@ -1,0 +1,34 @@
+.navigation{
+    background-color: rgb(24, 33, 209);
+    box-shadow: 10px;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+strong{
+    color: white;
+}
+
+.profil{
+    color: white;
+    cursor: pointer;
+}
+
+.profil:hover{
+    /* background-color: aliceblue; */
+    /* border: 1px solid white; */
+    color: rgb(0, 255, 0);
+}
+
+.deconnexion{
+    background-color: rgb(24, 33, 209);
+    border: 2px solid white;
+    color: rgb(255, 255, 255);
+}
+
+.deconnexion:hover{
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 0, 0);
+    color: rgb(251, 5, 5);
+}

@@ -1,16 +1,16 @@
 <div class="grid">
   <div class="titre_liste">
-    <H2 *ngFor="let data of infoEntree">
-      Designation : {{data.designation}}<br />
-      Date : {{data.dateEntree  | date:'dd/MM/yyyy'}}<br />
+    <H1 *ngFor="let data of infoEntree" class="info">
+      Designation : {{data.designation}} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+      Date : {{data.dateEntree  | date:'dd/MM/yyyy'}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
       Voiture : {{ data.voiture[0].numImmatricul }}   ({{ data.voiture[0].marque }})
-    </H2>
+    </H1>
   </div>
-  <div class="titre_insertion"></div>
+  <!-- <div class="titre_insertion"></div> -->
 </div>
 
 <div class="grid">
-    <div class="avancement"><h1>Avancement de(s) reparation</h1></div>
+    <div class="avancement"><h1>&nbsp;&nbsp;&nbsp;&nbsp;Avancement de(s) reparation(s)</h1></div>
     <div class="ajout"><h1>Ajouter une reparation</h1></div>
 </div>
 
@@ -19,7 +19,7 @@
     <div class="grid">
       <div class="todo" class="list-container">
         <article>
-          <header><h2>En attente</h2></header>
+          <header class="enAttente"><h2 class="attente">En attente</h2></header>
           <div class="todo-container column-container">
             <div class="list" 
             cdkDropList 
@@ -38,7 +38,7 @@
       </div>
       <div class="complete" class="list-container">
         <article>
-          <header><h2>Terminer</h2></header>
+          <header class="terminer"><h2 class="fini">Terminer</h2></header>
           <div class="done-container column-container">
             <div class="list"
             cdkDropList 
@@ -131,7 +131,7 @@
           </label>
         </div>
   
-        <button type="submit">Ajouter</button>
+        <button type="submit" class="ajouter">Ajouter</button>
       </form>
     </article>
   </div>

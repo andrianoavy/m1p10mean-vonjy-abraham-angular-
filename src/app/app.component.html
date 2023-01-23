@@ -1,13 +1,13 @@
-<nav>
+<nav class="navigation">
   <ul>
     <li><strong>Mikara-Car</strong></li>
   </ul>
   <ul>
-    <li><a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark">Profil</a></li>
+    <li class=""><a *ngIf="this.authService.isLoggedIn" class="p-2 profil">Profil</a></li>
     <li><a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/login">Identification</a></li>
     <li><a *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active"
       routerLinkActive="active" routerLink="/inscription">Inscription</a></li>
-    <li><button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn   ">Deconnexion</button></li>
+    <li><button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn deconnexion">Deconnexion</button></li>
   </ul>
 </nav>
 

@@ -21,7 +21,7 @@
           <td>{{ data.dateEntree | date:'dd/MM/yyyy'}}</td>
           <td>{{ data.dateSortie | date:'dd/MM/yyyy'}}</td>
           <td>{{ data.voiture[0].numImmatricul }}   ({{ data.voiture[0].marque }})</td>
-          <td><a [routerLink]="['/reparation']" [queryParams]="{entree_id:data._id}" routerLinkActive="router-link-active" role="button">Voir</a></td>
+          <td><a [routerLink]="['/reparation']" [queryParams]="{entree_id:data._id}" routerLinkActive="router-link-active" role="button" class="voir">Voir</a></td>
         </tr>
       </tbody>
     </table>
@@ -69,7 +69,7 @@
         <option *ngFor="let item of voitures" value="{{item._id}}">{{item.numImmatricul}}</option>
       </select>
       <!-- Button -->
-      <button type="submit">Ajouter</button>
+      <button type="submit" class="ajouter">Ajouter</button>
     </form>
   </div>
 </div>

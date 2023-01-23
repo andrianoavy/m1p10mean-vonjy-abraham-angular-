@@ -72,7 +72,7 @@ export class ListeRepationComponent {
       this.reparation.addReparation(this.reparationForm.value).subscribe(res=>{
         this.getAllReparation();
         this.reparationForm.reset();
-      })
+      });
   }
 
   onDrop(event: CdkDragDrop<Reparation[]>) {
