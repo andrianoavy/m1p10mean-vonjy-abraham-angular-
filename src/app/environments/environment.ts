@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    baseApiURL: 'http://localhost:3000/api'
+    baseApiURL: 'https://m1p10mean.onrender.com/api'
   };
