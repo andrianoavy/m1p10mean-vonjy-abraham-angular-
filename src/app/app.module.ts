@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { NgIconsModule } from '@ng-icons/core';
 
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ListeVoituresPageComponent } from './components/liste-voitures-page/liste-voitures-page.component';

@@ -6,7 +6,9 @@
       Voiture : {{ data.voiture[0].numImmatricul }}   ({{ data.voiture[0].marque }})
     </H1>
   </div>
-  <!-- <div class="titre_insertion"></div> -->
+  <div class="titre_insertion">
+    <div *ngIf="todos.length == 0 && completed.length >= 1" class="bonSortie"><h1>Valider un bon de sortie de cette voiture &nbsp;&nbsp;<a>Valider</a></h1></div>
+  </div>
 </div>
 
 <div class="grid">
@@ -19,7 +21,7 @@
     <div class="grid">
       <div class="todo" class="list-container">
         <article>
-          <header class="enAttente"><h2 class="attente">En attente</h2></header>
+          <header class="enAttente"><h2 class="attente">Réparation en attente</h2></header>
           <div class="todo-container column-container">
             <div class="list" 
             cdkDropList 
@@ -30,7 +32,10 @@
              >
               <article *ngFor="let todo of todos" cdkDrag>
                 <input type="hidden" value="1">
-                <h2>{{ todo.description}}</h2>
+                <div class="grid">
+                  <div class="descReparation"><h2>{{ todo.description}}</h2></div>
+                  <div class="actionReparation"><a href="" class="modifier" data-tooltip="Modifier">M</a><a href="" class="supprimer" data-tooltip="Supprimer">S</a></div>
+                </div>
               </article>
             </div>
           </div>
@@ -38,7 +43,7 @@
       </div>
       <div class="complete" class="list-container">
         <article>
-          <header class="terminer"><h2 class="fini">Terminer</h2></header>
+          <header class="terminer"><h2 class="fini">Réparation terminé</h2></header>
           <div class="done-container column-container">
             <div class="list"
             cdkDropList 
@@ -48,11 +53,14 @@
             (cdkDropListDropped)="onDrop($event)"
             >
             <div *ngIf="completed.length == 0 ;else elseBlock">
-              <article>Aucune reparation terminer</article>
+              <article><span>Aucune réparation terminé</span></article>
             </div>
             <ng-template #elseBlock>
               <article *ngFor="let complete of completed" >
-                <h2>{{ complete.description}}</h2>
+                <div class="grid">
+                  <div class="descReparation"><h2>{{ complete.description}}</h2></div>
+                  <div class="actionReparation"></div>
+                </div>
               </article>
             </ng-template>
               

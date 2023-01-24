@@ -4,7 +4,7 @@
   </ul>
   <ul>
     <li class=""><a *ngIf="this.authService.isLoggedIn" class="p-2 profil">Profil</a></li>
-    <li><a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/login">Identification</a></li>
+    <li><a *ngIf="!this.authService.isLoggedIn" class="p-2 text-white" routerLinkActive="active" routerLink="/login">Identification</a></li>
     <li><a *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active"
       routerLinkActive="active" routerLink="/inscription">Inscription</a></li>
     <li><button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn deconnexion">Deconnexion</button></li>
@@ -13,11 +13,16 @@
 <main>
   <router-outlet></router-outlet>
 </main>
-<footer class="container-fluid"  *ngIf="this.authService.isLoggedIn">
-  <h6>Notre équipe</h6>
-  <ul>
-    <li>Vonjy Ranjelison</li>
-    <li>Abraham Ramilison</li>
-  </ul>
+<footer class="container-fluid footer_equipe" *ngIf="this.authService.isLoggedIn">
+  <nav>
+    <ul></ul>
+    <ul>
+      <li>Créer par </li>
+      <li>Ranjelison vonjitahina charles &nbsp;&nbsp;|</li>
+      <li>Ramilison Abraham</li>
+      <li>©Janvier 2023</li>
+    </ul>
+    <ul></ul>
+  </nav>
 </footer>
 
