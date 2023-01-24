@@ -6,7 +6,8 @@ import { VoitureService } from 'src/app/services/voiture.service';
 @Component({
   selector: 'app-voitures-liste',
   templateUrl: './voitures-liste.component.html',
-  styleUrls: ['./voitures-liste.component.css']
+  styleUrls: ['./voitures-liste.component.css'],
+  styles: ['.search-bar { display:inline-flex; justify-items:space-between; width:100%;}']
 })
 export class VoituresListeComponent implements OnInit, OnDestroy {
 
@@ -29,6 +30,7 @@ export class VoituresListeComponent implements OnInit, OnDestroy {
 
   fetchVoitures() {
     this.voituresObs = this.service.getVoitures();
+    this.searchText = "";
   }
   filterVoitures(searchText: string) {
     this.voituresObs = this.service.findVoituresByString(searchText).pipe(takeUntil(this.searchNotifier));

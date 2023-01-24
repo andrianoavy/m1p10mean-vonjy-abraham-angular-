@@ -1,8 +1,4 @@
-<p>
-    {{voiture?.marque}} {{voiture?.modele}}
-</p> 
-<p>
-    Immatriculé: {{voiture?.numImmatricul}}
-</p>
-<!-- TODO Travailler sur page DétailsVoiture -->
-<button [routerLink]="'/voitures'">Détails</button>
+<td>{{voiture?.numImmatricul}}</td>
+<td>{{voiture?.marque}}</td>
+<td>{{voiture?.modele}}</td>
+<td><button [routerLink]="'/voitures'">Détails</button></td>
