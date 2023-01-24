@@ -15,6 +15,9 @@ export class LoginComponent {
     public authService: AuthService,
     public router: Router
   ) {
+    if(authService.isLoggedIn)
+      router.navigate(['voitures'])
+
     this.loginForm = this.formBuilder.group({
       email: [''],
       password: [''],

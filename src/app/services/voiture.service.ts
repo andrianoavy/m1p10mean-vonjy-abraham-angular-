@@ -10,7 +10,7 @@ import { AuthService } from "../services/auth.service";
 })
 export class VoitureService {
  
-  endpoint: string = environment.baseApiURL + '/voitures'
+  endpoint: string = environment.baseApiURL + '/api/voitures'
   
 
   getVoitures(): Observable<any> {
