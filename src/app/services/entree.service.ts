@@ -12,7 +12,7 @@ export class EntreeService {
 
   constructor(private http:HttpClient,private authService:AuthService) { }
 
-  base_url: string = environment.baseApiURL+'/api/atelier';
+  base_url: string = environment.baseApiURL+'/atelier';
 
   findEntrees(): Observable<any>{
     return this.http.get(this.base_url+'/entrees').pipe(catchError(this.handleError));

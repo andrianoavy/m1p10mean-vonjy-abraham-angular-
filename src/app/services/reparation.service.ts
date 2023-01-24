@@ -12,7 +12,7 @@ export class ReparationService {
 
   constructor(private http:HttpClient,private authService:AuthService) { }
 
-  base_url: string = environment.baseApiURL+'/api/atelier';
+  base_url: string = environment.baseApiURL+'/atelier';
 
   findReparation(entree_id:any): Observable<any>{
     let params = new HttpParams().set('id',entree_id)
