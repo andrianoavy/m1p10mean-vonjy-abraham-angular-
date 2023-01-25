@@ -6,10 +6,11 @@
             </h1>
             <h2>{{voiture.marque}} {{voiture.modele}}</h2>
         </hgroup>
-        <a role="button" class="outline" style="width:auto; display: inline-block;" [routerLink]="['/voiture/historique',immatriculation]">Historique de réparation de la voiture</a>
+        <a role="button" class="outline" style="width:auto; display: inline-block;" [routerLink]="['/voitures/historique',immatriculation]">Historique de réparation de la voiture</a>
     </div>
     <hr>
     <div *ngIf="voiture.entree as entree; else no_repair">
+        <h3>Réparation</h3>
         <app-reparation-table [entree]="entree"></app-reparation-table>
 
     </div>

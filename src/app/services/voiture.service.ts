@@ -9,6 +9,9 @@ import { AuthService } from "../services/auth.service";
   providedIn: 'root'
 })
 export class VoitureService {
+  getVoitureWithHistorique(immatriculation: string | null): Observable<any> {
+    return this.http.get(`${this.endpoint}/client/historique/${immatriculation}`).pipe(catchError(this.handleError))
+  }
  
   endpoint: string = environment.baseApiURL + '/voitures'
 

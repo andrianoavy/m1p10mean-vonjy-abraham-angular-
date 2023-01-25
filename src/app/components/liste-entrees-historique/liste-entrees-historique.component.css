@@ -1,6 +1,5 @@
-.article-head{
+.reparation-summary{
     display: inline-flex;
-    align-items: center;
+    width: 100%;
     justify-content: space-between;
-    width:100%;
 }

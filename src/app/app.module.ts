@@ -28,11 +28,12 @@ import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PageDetailsVoitureComponent } from './components/page-details-voiture/page-details-voiture.component';
 import { ReparationTrComponent } from './components/reparation-tr/reparation-tr.component';
-import { registerLocaleData } from '@angular/common';
+import { CurrencyPipe, DatePipe, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr-MG';
 import localeFrExtra from '@angular/common/locales/extra/fr-MG';
 import { ReparationHistoriqueComponent } from './components/reparation-historique/reparation-historique.component';
 import { ReparationTableComponent } from './components/reparation-table/reparation-table.component';
+import { ListeEntreesHistoriqueComponent } from './components/liste-entrees-historique/liste-entrees-historique.component';
 
 registerLocaleData(localeFr,'fr-MG', localeFrExtra)
 
@@ -52,7 +53,8 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     PageDetailsVoitureComponent,
     ReparationTrComponent,
     ReparationHistoriqueComponent,
-    ReparationTableComponent
+    ReparationTableComponent,
+    ListeEntreesHistoriqueComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,8 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     DragDropModule
   ],
   providers: [
+    DatePipe,
+    CurrencyPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

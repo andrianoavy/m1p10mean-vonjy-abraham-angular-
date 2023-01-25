@@ -1,4 +1,3 @@
-<h3>Réparation</h3>
 <p><u>Description:</u>&nbsp;<i>{{entree.designation}}</i></p>
 <p><u>Date d'entrée en garage:</u>&nbsp;<b>{{entree.dateEntree | date:'longDate'}}</b></p>
 <p *ngIf="entree.dateSortie;">Date de sortie: <b>{{entree.dateSortie | date:'longDate'}}</b></p>
@@ -13,7 +12,10 @@
             <th>Etat</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="entree.reparations.length > 0; else no_details">
         <tr app-reparation-tr *ngFor="let reparation of entree.reparations" [reparation]="reparation"></tr>
     </tbody>
+    <ng-template #no_details>
+        <p>Pas encore de détails pour cette réparation. Veuillez attendre la fin du diagnostique</p>        
+    </ng-template>
 </table>
