@@ -85,3 +85,7 @@ h4{
 *{
   font-size: 14px;
 }
+
+.dateSortie span{
+  text-align: center;
+}

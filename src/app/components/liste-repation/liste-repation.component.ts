@@ -28,6 +28,8 @@ export class ListeRepationComponent {
 
   completed:Reparation[]=[];
 
+  modalModification:boolean = false;
+
   constructor(private routeActive: ActivatedRoute,public formBuilder: FormBuilder,private reparation: ReparationService) {
     this.reparationForm = this.formBuilder.group({
       entreeId : [''],
@@ -73,6 +75,7 @@ export class ListeRepationComponent {
       this.reparation.addReparation(this.reparationForm.value).subscribe(res=>{
         this.getAllReparation();
         this.reparationForm.reset();
+        window.location.reload();
       });
   }
 
@@ -98,10 +101,33 @@ export class ListeRepationComponent {
           "entreeId": this.entree_id,
           "reparationId": dataTerminer[i].reparationId
         };
-        this.reparation.updateReparation(body).subscribe(res=>{
-          console.log("updated");      
-        });
+        this.reparation.updateReparation(body).subscribe(res=>{});
       }
     }
+  }
+
+  onValideSortie(){
+    const body = {
+      "entreeId" : this.entree_id
+    }
+    this.reparation.updateEntree(body).subscribe(res=>{
+      window.location.reload();
+    });
+  }
+
+
+  onDeleteEntree(reparationId:any){
+    const body = {
+      "entreeId": this.entree_id,
+      "reparationId": reparationId
+    }
+    this.reparation.deleteReparation(body).subscribe(res=>{
+      window.location.reload();
+    })
+  }
+
+  onModification(reparationId:any){
+    console.log(reparationId);
+    this.modalModification = true;
   }
 }

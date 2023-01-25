@@ -108,7 +108,7 @@
   
   .bonSortie h1 a{
     background-color: #13d627;
-    padding: 5px 10px;
+    padding: 3px 10px;
     text-decoration: none;
     cursor: pointer;
     color: white;
@@ -150,4 +150,8 @@
     background-color: white;
     color: #fb4c4c;
     border: 2px solid #fb4c4c;
+  }
+
+  .bonValide h1{
+    color: #13d627;
   }

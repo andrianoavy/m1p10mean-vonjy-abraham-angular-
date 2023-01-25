@@ -1,19 +1,49 @@
 <div class="grid">
   <div class="titre_liste">
     <H1 *ngFor="let data of infoEntree" class="info">
-      Designation : {{data.designation}} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-      Date : {{data.dateEntree  | date:'dd/MM/yyyy'}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-      Voiture : {{ data.voiture[0].numImmatricul }}   ({{ data.voiture[0].marque }})
+      Designation :
+      {{ data.designation }} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+      Date d'entrée en garage :
+      {{
+        data.dateEntree | date : "dd/MM/yyyy"
+      }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; Voiture :
+      {{ data.voiture[0].numImmatricul }} ({{ data.voiture[0].marque }})
     </H1>
   </div>
   <div class="titre_insertion">
-    <div *ngIf="todos.length == 0 && completed.length >= 1" class="bonSortie"><h1>Valider un bon de sortie de cette voiture &nbsp;&nbsp;<a>Valider</a></h1></div>
+    <div
+      *ngIf="infoEntree[0].bonDeSortie == 'Valide'; else nonValide"
+      class="bonValide"
+    >
+      <h1>Le bon de sortie de cette voiture est validé</h1>
+    </div>
+    <ng-template #nonValide
+      ><div
+        *ngIf="todos.length == 0 && completed.length >= 1"
+        class="bonSortie"
+      >
+        <h1>
+          Valider un bon de sortie de cette voiture et vous ne pouvez plus
+          ajouter de(s) réparation(s) &nbsp;&nbsp;<a (click)="onValideSortie()"
+            >Valider</a
+          >
+        </h1>
+      </div></ng-template
+    >
   </div>
 </div>
 
 <div class="grid">
-    <div class="avancement"><h1>&nbsp;&nbsp;&nbsp;&nbsp;Avancement de(s) reparation(s)</h1></div>
-    <div class="ajout"><h1>Ajouter une reparation</h1></div>
+  <div class="avancement">
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Avancement de(s) reparation(s)</h1>
+  </div>
+  <div
+    class="ajout"
+    *ngIf="infoEntree[0].bonDeSortie !== 'Valide'; else hideInsertion"
+  >
+    <h1>Ajouter une reparation</h1>
+  </div>
+  <ng-template #hideInsertion><div></div></ng-template>
 </div>
 
 <div class="grid">
@@ -21,20 +51,33 @@
     <div class="grid">
       <div class="todo" class="list-container">
         <article>
-          <header class="enAttente"><h2 class="attente">Réparation en attente</h2></header>
+          <header class="enAttente">
+            <h2 class="attente">Réparation en attente</h2>
+          </header>
           <div class="todo-container column-container">
-            <div class="list" 
-            cdkDropList 
-            #todoList="cdkDropList" 
-            [cdkDropListData]="todos"
-            [cdkDropListConnectedTo]="[doneList]"
-            (cdkDropListDropped)="onDrop($event)"
-             >
+            <div
+              class="list"
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="todos"
+              [cdkDropListConnectedTo]="[doneList]"
+              (cdkDropListDropped)="onDrop($event)"
+            >
               <article *ngFor="let todo of todos" cdkDrag>
-                <input type="hidden" value="1">
+                <input type="hidden" value="1" />
                 <div class="grid">
-                  <div class="descReparation"><h2>{{ todo.description}}</h2></div>
-                  <div class="actionReparation"><a href="" class="modifier" data-tooltip="Modifier">M</a><a href="" class="supprimer" data-tooltip="Supprimer">S</a></div>
+                  <div class="descReparation">
+                    <h2>{{ todo.description }}</h2>
+                  </div>
+                  <div class="actionReparation">
+                    <a class="modifier" data-tooltip="Modifier" (click)="onModification(todo.reparationId)">M</a>
+                    <a
+                      class="supprimer"
+                      data-tooltip="Supprimer"
+                      (click)="onDeleteEntree(todo.reparationId)"
+                      >S</a
+                    >
+                  </div>
                 </div>
               </article>
             </div>
@@ -43,27 +86,31 @@
       </div>
       <div class="complete" class="list-container">
         <article>
-          <header class="terminer"><h2 class="fini">Réparation terminé</h2></header>
+          <header class="terminer">
+            <h2 class="fini">Réparation terminé</h2>
+          </header>
           <div class="done-container column-container">
-            <div class="list"
-            cdkDropList 
-            #doneList="cdkDropList" 
-            [cdkDropListData]="completed"
-            [cdkDropListConnectedTo]="[todoList]"
-            (cdkDropListDropped)="onDrop($event)"
+            <div
+              class="list"
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="completed"
+              [cdkDropListConnectedTo]="[todoList]"
+              (cdkDropListDropped)="onDrop($event)"
             >
-            <div *ngIf="completed.length == 0 ;else elseBlock">
-              <article><span>Aucune réparation terminé</span></article>
-            </div>
-            <ng-template #elseBlock>
-              <article *ngFor="let complete of completed" >
-                <div class="grid">
-                  <div class="descReparation"><h2>{{ complete.description}}</h2></div>
-                  <div class="actionReparation"></div>
-                </div>
-              </article>
-            </ng-template>
-              
+              <div *ngIf="completed.length == 0; else elseBlock">
+                <article><span>Aucune réparation terminé</span></article>
+              </div>
+              <ng-template #elseBlock>
+                <article *ngFor="let complete of completed">
+                  <div class="grid">
+                    <div class="descReparation">
+                      <h2>{{ complete.description }}</h2>
+                    </div>
+                    <div class="actionReparation"></div>
+                  </div>
+                </article>
+              </ng-template>
             </div>
           </div>
         </article>
@@ -71,76 +118,209 @@
     </div>
   </div>
   <div class="insertion">
-    <article>
-      <form class="form-insert-entree" [formGroup]="reparationForm" (ngSubmit)="insertReparation()">
-        <input type="hidden" formControlName="entreeId" [ngModel]="entree_id" >
-        <label for="desc">Description de la reparation</label>
-        <input
-          type="text"
-          id="desc" 
-          formControlName="description"
-          placeholder="Description de la reparation"
-          required
-        />
-  
-        <div class="grid">
-          <label for="descPrestation">
+    <div *ngIf="infoEntree[0].bonDeSortie == 'Valide'; else hideForm"></div>
+    <ng-template #hideForm>
+      <article>
+        <form
+          class="form-insert-entree"
+          [formGroup]="reparationForm"
+          (ngSubmit)="insertReparation()"
+        >
+          <input
+            type="hidden"
+            formControlName="entreeId"
+            [ngModel]="entree_id"
+          />
+          <label for="desc">Description de la reparation</label>
+          <input
+            type="text"
+            id="desc"
+            formControlName="description"
+            placeholder="Description de la reparation"
+            required
+          />
+
+          <div class="grid">
+            <label for="descPrestation">
               Description de la prestation
-            <input
-              type="text"
-              id="descPrestation"
-              formControlName="designationPrestation"
-              placeholder="Description de la prestation."
-              required
-            />
-          </label>
-  
-          <label for="montantPrestation">
+              <input
+                type="text"
+                id="descPrestation"
+                formControlName="designationPrestation"
+                placeholder="Description de la prestation."
+                required
+              />
+            </label>
+
+            <label for="montantPrestation">
               Montant de la prestation
-            <input type="number" id="montantPrestation" formControlName="montantPrestation" min="0" placeholder="Montant de la prestation" />
-          </label>
-        </div>
-  
-        <div class="grid">
-          <label for="descAchat">
+              <input
+                type="number"
+                id="montantPrestation"
+                formControlName="montantPrestation"
+                min="0"
+                placeholder="Montant de la prestation"
+              />
+            </label>
+          </div>
+
+          <div class="grid">
+            <label for="descAchat">
               Description de l'achat des pieces
-            <input
-              type="text"
-              id="descAchat"
-              formControlName="designationAchat"
-              placeholder="Description de l'achat des pieces."
-              required
-            />
-          </label>
-  
-          <label for="montantAchat">
+              <input
+                type="text"
+                id="descAchat"
+                formControlName="designationAchat"
+                placeholder="Description de l'achat des pieces."
+                required
+              />
+            </label>
+
+            <label for="montantAchat">
               Montant de l'achat
-            <input type="number" id="montantAchat" formControlName="montantAchat" min="0" placeholder="Montant de l'achat des pieces." />
-          </label>
-        </div>
-  
-        <!-- Grid -->
-        <div class="grid">
-          <!-- Markup example 1: input is inside label -->
-          <label for="dateEntree">
+              <input
+                type="number"
+                id="montantAchat"
+                formControlName="montantAchat"
+                min="0"
+                placeholder="Montant de l'achat des pieces."
+              />
+            </label>
+          </div>
+
+          <!-- Grid -->
+          <div class="grid">
+            <!-- Markup example 1: input is inside label -->
+            <label for="dateEntree">
               Date debut de la reparation
-            <input
-              type="date"
-              id="dateEntree"
-              formControlName="dateDebut"
-              placeholder="Date debut de la reparation"
-              required
-            />
-          </label>
-  
-          <label for="dateSortie">
+              <input
+                type="date"
+                id="dateEntree"
+                formControlName="dateDebut"
+                placeholder="Date debut de la reparation"
+                required
+              />
+            </label>
+
+            <label for="dateSortie">
               Date fin de la reparation
-            <input type="date" id="dateSortie" formControlName="dateFin" placeholder="Date fin de la reparation" />
-          </label>
-        </div>
-  
-        <button type="submit" class="ajouter">Ajouter</button>
-      </form>
-    </article>
+              <input
+                type="date"
+                id="dateSortie"
+                formControlName="dateFin"
+                placeholder="Date fin de la reparation"
+              />
+            </label>
+          </div>
+
+          <button type="submit" class="ajouter">Ajouter</button>
+        </form>
+      </article>
+    </ng-template>
   </div>
+</div>
+
+<div *ngIf="modalModification == true">
+  <dialog open>
+    <article>
+      <header>
+        <a aria-label="Close" class="close"></a>
+        <h1>Modification d'une reparation</h1> 
+      </header>
+      <form
+          class="form-insert-entree"
+          [formGroup]="reparationForm"
+          (ngSubmit)="insertReparation()"
+        >
+          <input
+            type="hidden"
+            formControlName="entreeId"
+            [ngModel]="entree_id"
+          />
+          <label for="desc">Description de la reparation</label>
+          <input
+            type="text"
+            id="desc"
+            formControlName="description"
+            placeholder="Description de la reparation"
+            required
+          />
+
+          <div class="grid">
+            <label for="descPrestation">
+              Description de la prestation
+              <input
+                type="text"
+                id="descPrestation"
+                formControlName="designationPrestation"
+                placeholder="Description de la prestation."
+                required
+              />
+            </label>
+
+            <label for="montantPrestation">
+              Montant de la prestation
+              <input
+                type="number"
+                id="montantPrestation"
+                formControlName="montantPrestation"
+                min="0"
+                placeholder="Montant de la prestation"
+              />
+            </label>
+          </div>
+
+          <div class="grid">
+            <label for="descAchat">
+              Description de l'achat des pieces
+              <input
+                type="text"
+                id="descAchat"
+                formControlName="designationAchat"
+                placeholder="Description de l'achat des pieces."
+                required
+              />
+            </label>
+
+            <label for="montantAchat">
+              Montant de l'achat
+              <input
+                type="number"
+                id="montantAchat"
+                formControlName="montantAchat"
+                min="0"
+                placeholder="Montant de l'achat des pieces."
+              />
+            </label>
+          </div>
+
+          <!-- Grid -->
+          <div class="grid">
+            <!-- Markup example 1: input is inside label -->
+            <label for="dateEntree">
+              Date debut de la reparation
+              <input
+                type="date"
+                id="dateEntree"
+                formControlName="dateDebut"
+                placeholder="Date debut de la reparation"
+                required
+              />
+            </label>
+
+            <label for="dateSortie">
+              Date fin de la reparation
+              <input
+                type="date"
+                id="dateSortie"
+                formControlName="dateFin"
+                placeholder="Date fin de la reparation"
+              />
+            </label>
+          </div>
+
+          <button type="submit" class="ajouter">Modifier</button>
+        </form>
+    </article>
+  </dialog>
 </div>

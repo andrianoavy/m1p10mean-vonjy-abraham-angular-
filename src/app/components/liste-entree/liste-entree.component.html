@@ -18,58 +18,86 @@
       <tbody>
         <tr *ngFor="let data of entrees">
           <td>{{ data.designation }}</td>
-          <td>{{ data.dateEntree | date:'dd/MM/yyyy'}}</td>
-          <td>{{ data.dateSortie | date:'dd/MM/yyyy'}}</td>
-          <td>{{ data.voiture[0].numImmatricul }}   ({{ data.voiture[0].marque }})</td>
-          <td><a [routerLink]="['/reparation']" [queryParams]="{entree_id:data._id}" routerLinkActive="router-link-active" role="button" class="voir">Voir</a></td>
+          <td>{{ data.dateEntree | date : "dd/MM/yyyy" }}</td>
+          <td class="dateSortie">
+            <span *ngIf="data.dateSortie !== null; else dateSortieNull">{{
+              data.dateSortie | date : "dd/MM/yyyy"
+            }}</span
+            ><ng-template #dateSortieNull
+              ><span class="dateSortie">--</span></ng-template
+            >
+          </td>
+          <td>
+            {{ data.voiture[0].numImmatricul }} ({{ data.voiture[0].marque }})
+          </td>
+          <td>
+            <a
+              [routerLink]="['/reparation']"
+              [queryParams]="{ entree_id: data._id }"
+              routerLinkActive="router-link-active"
+              role="button"
+              class="voir"
+              >Voir</a
+            >
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="insertion">
-    <form class="form-insert-entree" [formGroup]="entreeForm" (ngSubmit)="insertEntree()">
-      <label for="desc">Description de l'entree en garage</label>
-      <input
-        type="text"
-        id="desc"
-        formControlName="designation"
-        placeholder="Description de l'entree en garage"
-        required
-      />
-      <!-- Grid -->
-      <div class="grid">
-        <!-- Markup example 1: input is inside label -->
-        <label for="dateEntree">
-          Date d'entree
-          <input
-            type="date"
-            id="dateEntree"
-            formControlName="dateEntree"
-            placeholder="Date d'entree"
-            required
-          />
-        </label>
+    <article>
+      <form
+        class="form-insert-entree"
+        [formGroup]="entreeForm"
+        (ngSubmit)="insertEntree()"
+      >
+        <label for="desc">Description de l'entree en garage</label>
+        <input
+          type="text"
+          id="desc"
+          formControlName="designation"
+          placeholder="Description de l'entree en garage"
+          required
+        />
 
-        <label for="dateSortie">
-          Date de sortie
+        <label for="voiture">Selectionnez une voiture</label>
+        <select id="voiture" formControlName="voitureId" required>
+          <option value="" selected>Selectionnez une voiture...</option>
+          <option *ngFor="let item of voitures" value="{{ item._id }}">
+            {{ item.numImmatricul }}
+          </option>
+        </select>
+        <!-- Grid -->
+        <div class="grid">
+          <!-- Markup example 1: input is inside label -->
+          <label for="dateEntree">
+            Date d'entree
+            <input
+              type="date"
+              id="dateEntree"
+              formControlName="dateEntree"
+              placeholder="Date d'entree"
+              required
+            />
+          </label>
+
+          <label for="dateSortie">
+            <!-- Date de sortie
           <input
             type="date"
             id="dateSortie"
             formControlName="dateSortie"
             placeholder="Date de sortie"
-          />
-        </label>
-      </div>
+          /> -->
+          </label>
+        </div>
 
-      <!-- Markup example 2: input is after label -->
-      <label for="voiture">Selectionnez une voiture</label>
-      <select id="voiture" formControlName="voitureId" required>
-        <option value="" selected>Selectionnez une voiture...</option>
-        <option *ngFor="let item of voitures" value="{{item._id}}">{{item.numImmatricul}}</option>
-      </select>
-      <!-- Button -->
-      <button type="submit" class="ajouter">Ajouter</button>
-    </form>
+        <!-- Markup example 2: input is after label -->
+
+        <!-- Button -->
+        <button type="submit" class="ajouter">Ajouter</button>
+      </form>
+    </article>
   </div>
 </div>
