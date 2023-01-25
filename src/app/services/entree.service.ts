@@ -22,6 +22,13 @@ export class EntreeService {
     return this.http.post(this.base_url + '/entree',entree).pipe(catchError(this.handleError));
   }
 
+  findLastEntree(idVoiture: string):Observable<any>{
+    return this.http.get(environment.baseApiURL+'/entrees',{
+      params:{voiture:idVoiture}
+    })
+    .pipe(catchError(this.handleError));
+  }
+
 
 
   // Error

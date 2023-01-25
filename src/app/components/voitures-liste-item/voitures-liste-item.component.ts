@@ -12,7 +12,4 @@ export class VoituresListeItemComponent {
   constructor() {  
   }
 
-  getVoitureLink(){
-    return `/voitures/${this.voiture?.numImmatricul}`
-  }
 }

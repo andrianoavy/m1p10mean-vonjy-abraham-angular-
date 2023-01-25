@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -26,6 +26,15 @@ import { ListeRepationComponent } from './components/liste-repation/liste-repati
 import { RouterModule } from '@angular/router';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PageDetailsVoitureComponent } from './components/page-details-voiture/page-details-voiture.component';
+import { ReparationTrComponent } from './components/reparation-tr/reparation-tr.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr-MG';
+import localeFrExtra from '@angular/common/locales/extra/fr-MG';
+import { ReparationHistoriqueComponent } from './components/reparation-historique/reparation-historique.component';
+import { ReparationTableComponent } from './components/reparation-table/reparation-table.component';
+
+registerLocaleData(localeFr,'fr-MG', localeFrExtra)
 
 @NgModule({
   declarations: [
@@ -39,7 +48,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     InscriptionComponent,
     ListeVoitureComponent,
     ListeEntreeComponent,
-    ListeRepationComponent
+    ListeRepationComponent,
+    PageDetailsVoitureComponent,
+    ReparationTrComponent,
+    ReparationHistoriqueComponent,
+    ReparationTableComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +69,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    { provide: LOCALE_ID, useValue: 'fr-MG' },
   ],
   bootstrap: [AppComponent]
 })

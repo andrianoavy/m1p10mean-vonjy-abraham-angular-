@@ -11,7 +11,11 @@ import { AuthService } from "../services/auth.service";
 export class VoitureService {
  
   endpoint: string = environment.baseApiURL + '/voitures'
-  
+
+  getVoitureWithReparation(immatriculation:any){
+    return this.http.get(`${this.endpoint}/client/${immatriculation}`).pipe(catchError(this.handleError))
+  }
+
   findVoitures(): Observable<any> {
     return this.http.get(this.endpoint+'/all').pipe(catchError(this.handleError))
   }
