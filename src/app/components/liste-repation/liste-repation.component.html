@@ -15,7 +15,7 @@
       *ngIf="infoEntree[0].bonDeSortie == 'Valide'; else nonValide"
       class="bonValide"
     >
-      <h1>Le bon de sortie de cette voiture est validé</h1>
+      <h1>Le bon de sortie de cette voiture est validé et l'email est envoyé au client. </h1>
     </div>
     <ng-template #nonValide
       ><div
@@ -67,7 +67,7 @@
                 <input type="hidden" value="1" />
                 <div class="grid">
                   <div class="descReparation">
-                    <h2>{{ todo.description }}</h2>
+                    <h2>{{ todo.description }} <br> Montant : {{todo.montantAchat + todo.montantPrestation}} Ariary</h2>
                   </div>
                   <div class="actionReparation">
                     <a class="modifier" data-tooltip="Modifier" (click)="onModification(todo.reparationId)">M</a>
@@ -105,7 +105,7 @@
                 <article *ngFor="let complete of completed">
                   <div class="grid">
                     <div class="descReparation">
-                      <h2>{{ complete.description }}</h2>
+                      <h2>{{ complete.description }}<br> Montant : {{complete.montantAchat + complete.montantPrestation}} Ariary</h2>
                     </div>
                     <div class="actionReparation"></div>
                   </div>
@@ -224,13 +224,11 @@
   <dialog open>
     <article>
       <header>
-        <a aria-label="Close" class="close"></a>
+        <a aria-label="Close" class="close" (click)="closeModal()"></a>
         <h1>Modification d'une reparation</h1> 
       </header>
       <form
           class="form-insert-entree"
-          [formGroup]="reparationForm"
-          (ngSubmit)="insertReparation()"
         >
           <input
             type="hidden"
