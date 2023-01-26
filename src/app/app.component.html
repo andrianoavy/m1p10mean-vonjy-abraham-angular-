@@ -1,4 +1,4 @@
-<nav class="navigation">
+<nav class="navigation" style="margin-bottom: 1rem;">
   <ul>
     <li><strong>Mikara-Car</strong></li>
   </ul>
@@ -8,6 +8,17 @@
     <li><a *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active"
       routerLinkActive="active" routerLink="/inscription">Inscription</a></li>
     <li><button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn deconnexion">Deconnexion</button></li>
+  </ul>
+</nav>
+<nav class="sub-nav">
+  <ul>
+    <li>
+        Espace Client
+    </li>
+  </ul>
+  <ul>
+    <li><a routerLinkActive="active" routerLink="/voitures">Voitures</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/voitures','factures']">Factures</a></li>
   </ul>
 </nav>
 <main>

@@ -32,3 +32,8 @@ strong{
     border: 2px solid rgb(255, 0, 0);
     color: rgb(251, 5, 5);
 }
+
+.sub-nav{
+    max-width:25rem;
+    margin: 1rem auto;
+}

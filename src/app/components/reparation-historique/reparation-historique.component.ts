@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { VoitureService } from 'src/app/services/voiture.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class ReparationHistoriqueComponent implements OnInit, OnDestroy{
   page:number = 0;
   itemCount:number = 10;
   total:number|undefined;
+  isLoading: boolean = true;
 
   constructor(private route: ActivatedRoute, private voitureService: VoitureService) {
   }
@@ -30,12 +31,17 @@ export class ReparationHistoriqueComponent implements OnInit, OnDestroy{
     this.fetchHistorique()
   }
   fetchHistorique() {
-    this.voiture$ = this.voitureService.getVoitureWithHistorique(this.immatriculation,{page:this.page, itemCount:this.itemCount}).subscribe(
-      (data) => {
-        this.voiture = data.voiture
+    this.voiture$ = this.voitureService.getVoitureWithHistorique(this.immatriculation,{page:this.page, itemCount:this.itemCount})    
+    .subscribe(
+      {
+        next: data => {
+          this.voiture = data.voiture
         this.page = data.page
         this.total = data.total
-      }
+        this.isLoading = false
+        },
+        error: err => this.isLoading = false
+      },
     )
   }
 

@@ -33,6 +33,7 @@ import { ReparationHistoriqueComponent } from './components/reparation-historiqu
 import { ReparationTableComponent } from './components/reparation-table/reparation-table.component';
 import { ListeEntreesHistoriqueComponent } from './components/liste-entrees-historique/liste-entrees-historique.component';
 import { getFrenchPaginatorIntl } from './providers/mat-paginator-fr';
+import { PageFacturesComponent } from './components/page-factures/page-factures.component';
 
 registerLocaleData(localeFr,'fr-MG', localeFrExtra)
 
@@ -53,6 +54,7 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     ReparationHistoriqueComponent,
     ReparationTableComponent,
     ListeEntreesHistoriqueComponent,
+    PageFacturesComponent,
   ],
   imports: [
     MatPaginatorModule,

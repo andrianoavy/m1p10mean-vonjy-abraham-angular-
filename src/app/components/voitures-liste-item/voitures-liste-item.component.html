@@ -1,4 +1,5 @@
 <td>{{voiture?.numImmatricul}}</td>
 <td>{{voiture?.marque}}</td>
 <td>{{voiture?.modele}}</td>
-<td><button [routerLink]="['/voitures',voiture?.numImmatricul]" [state]="voiture?.numImmatricul">Détails</button></td>
+<td><a role="button" class="outline" [routerLink]="[voiture?.numImmatricul]" >Détails</a></td>
+<td><a role="button" class="outline secondary" [routerLink]="[voiture?.numImmatricul,'historique']" >Historique</a></td>

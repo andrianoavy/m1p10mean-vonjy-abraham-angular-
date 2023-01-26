@@ -1,0 +1,9 @@
+.refresh-button {
+    width: auto;
+    display: inline-block;
+    border-radius: 10rem;
+}
+.search-bar{
+    display: inline-flex;
+    gap:0.5rem;
+}

@@ -2,7 +2,7 @@
     <div class="liste-container">
         <div class="search-bar">
             <input type="search" placeholder="Recherche..." [(ngModel)]="searchText" (keyup)="applyFilter($event)">
-            <button (click)="fetchVoitures()" style="max-width: 103px;">Actualiser</button>
+            <button (click)="fetchVoitures()" class="refresh-button">Actualiser</button>
         </div>
         <table role="grid" class="Liste" *ngIf="voituresObs | async as voitures; else loading">
             <thead>
