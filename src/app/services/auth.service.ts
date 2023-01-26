@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  isLogin = false;
 
   roleAs:string;
 
