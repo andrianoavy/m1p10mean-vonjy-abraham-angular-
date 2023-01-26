@@ -3,8 +3,8 @@ html {
     font-size: 62, 5%;
 }
 
-@import '~@picocss/pico/css/pico.min.css';
 
+@import '~@picocss/pico/css/pico.min.css';
 
 @media (min-width: 1200px) {
     :root {
@@ -28,3 +28,40 @@ html {
 }
 html, body { height: 100%; }
 body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-overlay-container {
+    position: fixed;
+    z-index: 1000;
+}
+
+.cdk-overlay-container, .cdk-global-overlay-wrapper {
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+    position: absolute;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    min-width: 1px;
+    min-height: 1px;
+    }
+.cdk-overlay-pane {
+    position: absolute;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.mdc-menu-surface {
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    background-color: #11191f;
+    color: hsl(205deg, 16%, 77%);
+}

@@ -1,18 +1,24 @@
-<article *ngIf="voiture$ | async as data; else loading">
-    <div *ngIf="data.voiture as voiture;">
-    <div class="article-head">
-        <hgroup>
-            <h1>Historique de réparation</h1>
-            <h2>
-                {{voiture.numImmatricul}}
-            </h2>
-            <h3>{{voiture.marque}} {{voiture.modele}}</h3>
-        </hgroup>
-        <a role="button" class="outline" style="width:auto; display: inline-block;" [routerLink]="['/voitures']">Retour à la liste</a>
+<article *ngIf="voiture$; else loading">
+    <div *ngIf="voiture && voiture.entrees; else no_repair">
+        <div class="article-head">
+            <hgroup>
+                <h1>Historique de réparation</h1>
+                <h2>
+                    {{voiture.numImmatricul}}
+                </h2>
+                <h3>{{voiture.marque}} {{voiture.modele}}</h3>
+            </hgroup>
+            <a role="button" class="outline" style="width:auto; display: inline-block;"
+                [routerLink]="['/voitures']">Retour à la liste</a>
+        </div>
+        <hr>
+        <app-liste-entrees-historique [entrees]="voiture.entrees"></app-liste-entrees-historique>
+        <div style="width:100%;display: inline-flex; justify-content: center;">
+            <mat-paginator [length]="total" [pageSize]="itemCount" [pageSizeOptions]="[5, 10, 25, 100]" [pageIndex]="page" (page)="changePage($event)" 
+                aria-label="Select page">
+            </mat-paginator>
+        </div>
     </div>
-    <hr>
-    <app-liste-entrees-historique [entrees]="voiture.entrees"></app-liste-entrees-historique>
-</div>
     <ng-template #no_repair>
         <p>Pas de réparations en ce moment</p>
     </ng-template>

@@ -8,15 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator'
 
-
-import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ListeVoituresPageComponent } from './components/liste-voitures-page/liste-voitures-page.component';
 import { VoituresListeComponent } from './components/voitures-liste/voitures-liste.component';
 import { VoituresListeItemComponent } from './components/voitures-liste-item/voitures-liste-item.component';
 import { FormulaireVoiturePageComponent } from './components/formulaire-voiture-page/formulaire-voiture-page.component';
 
-import { HelloworldComponent } from './components/helloworld/helloworld.component';
 import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +32,7 @@ import localeFrExtra from '@angular/common/locales/extra/fr-MG';
 import { ReparationHistoriqueComponent } from './components/reparation-historique/reparation-historique.component';
 import { ReparationTableComponent } from './components/reparation-table/reparation-table.component';
 import { ListeEntreesHistoriqueComponent } from './components/liste-entrees-historique/liste-entrees-historique.component';
+import { getFrenchPaginatorIntl } from './providers/mat-paginator-fr';
 
 registerLocaleData(localeFr,'fr-MG', localeFrExtra)
 
@@ -44,7 +43,6 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     VoituresListeComponent,
     VoituresListeItemComponent,
     FormulaireVoiturePageComponent,
-    HelloworldComponent,
     LoginComponent,
     InscriptionComponent,
     ListeVoitureComponent,
@@ -54,9 +52,10 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     ReparationTrComponent,
     ReparationHistoriqueComponent,
     ReparationTableComponent,
-    ListeEntreesHistoriqueComponent
+    ListeEntreesHistoriqueComponent,
   ],
   imports: [
+    MatPaginatorModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -69,6 +68,7 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
   providers: [
     DatePipe,
     CurrencyPipe,
+    { provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl() },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

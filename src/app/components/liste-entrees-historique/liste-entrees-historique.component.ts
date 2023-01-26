@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-liste-entrees-historique',
   templateUrl: './liste-entrees-historique.component.html',
-  styleUrls: ['./liste-entrees-historique.component.css']
+  styleUrls: ['./liste-entrees-historique.component.css'],
 })
 export class ListeEntreesHistoriqueComponent {
   @Input() entrees: any[];
