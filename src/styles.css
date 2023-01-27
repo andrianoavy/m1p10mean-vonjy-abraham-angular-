@@ -65,3 +65,21 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #11191f;
     color: hsl(205deg, 16%, 77%);
 }
+
+.badge {
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+  }
+.with-client {
+    color: white;
+    background-color: darkblue;
+}
+.repairing {
+    color: white;
+    background-color: darkgoldenrod;
+}
+.repaired {
+    color: white;
+    background-color: darkgreen;
+}

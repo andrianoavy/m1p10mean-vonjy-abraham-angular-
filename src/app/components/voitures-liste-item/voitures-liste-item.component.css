@@ -1,0 +1,17 @@
+.badge {
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+  }
+.with-client {
+    color: white;
+    background-color: darkblue;
+}
+.repairing {
+    color: white;
+    background-color: darkgoldenrod;
+}
+.repaired {
+    color: white;
+    background-color: darkgreen;
+}

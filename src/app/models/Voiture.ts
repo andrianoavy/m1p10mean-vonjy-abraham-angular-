@@ -4,4 +4,5 @@ export class Voiture {
     numImmatricul!:String;
     marque!:String;
     modele!:String;
+    etat?:string
 }

@@ -12,4 +12,15 @@ export class VoituresListeItemComponent {
   constructor() {  
   }
 
+  getBadge():string{
+    switch (this.voiture?.etat) {
+      case "Réparée":
+        return "repaired";
+      case "En réparation":
+        return "repairing"
+      default:
+        return "with-client"
+    }
+  }
+
 }
