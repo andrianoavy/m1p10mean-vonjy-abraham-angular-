@@ -10,7 +10,7 @@
     <li><button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn deconnexion">Deconnexion</button></li>
   </ul>
 </nav>
-<nav class="sub-nav">
+<nav *ngIf="isClient()" class="sub-nav">
   <ul>
     <li>
         Espace Client

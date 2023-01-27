@@ -9,8 +9,11 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'Garage | Mikara-Car';
-  constructor(public authService: AuthService, public router:Router) { }
+  constructor(public authService: AuthService, public router:Router,) { }
   logout() {
     this.authService.doLogout()
+  }
+  isClient(): any {
+    return this.authService.getRole() === "Client"
   }
 }

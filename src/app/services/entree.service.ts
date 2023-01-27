@@ -33,6 +33,8 @@ export class EntreeService {
 
   // Error
   handleError(error: HttpErrorResponse) {
+    console.error(error);
+    
     let msg = '';
     if (error.error instanceof ErrorEvent) {
       // client-side error
