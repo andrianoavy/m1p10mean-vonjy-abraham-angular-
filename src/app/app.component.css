@@ -1,7 +1,8 @@
 .navigation{
-    background-color: rgb(24, 33, 209);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(11,25,121,1) 0%, rgba(24,208,206,1) 30%, rgba(24,33,209,1) 100%);
     box-shadow: 10px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -13,6 +14,7 @@ strong{
 .profil{
     color: white;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .profil:hover{
@@ -22,7 +24,7 @@ strong{
 }
 
 .deconnexion{
-    background-color: rgb(24, 33, 209);
+    background-color: #1821d1;
     border: 2px solid white;
     color: rgb(255, 255, 255);
 }
@@ -36,4 +38,26 @@ strong{
 .sub-nav{
     max-width:25rem;
     margin: 1rem auto;
+}
+.footer_equipe{
+    background: rgb(39,199,225);
+    background: linear-gradient(90deg, rgba(39,199,225,1) 0%, rgba(24,62,208,1) 30%, rgba(35,32,217,1) 63%, rgba(11,25,121,1) 85%);
+    /* border-radius: 5px; */
+}
+
+.footer_equipe li{
+    color: white;
+    font-size: 13px;
+}
+
+ul a{
+    color: white;
+}
+
+*{
+    font-size: 14px;
+}
+
+strong{
+    font-size: 18px;
 }

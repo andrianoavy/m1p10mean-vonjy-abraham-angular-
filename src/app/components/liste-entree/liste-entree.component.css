@@ -54,7 +54,7 @@
   margin-top: 20px;
 }
 
-h2{
+h4{
   margin: 10px;
 }
 
@@ -80,4 +80,12 @@ h2{
   background-color: rgb(24, 33, 209);
   border: none;
   color: white;
+}
+
+*{
+  font-size: 14px;
+}
+
+.dateSortie span{
+  text-align: center;
 }

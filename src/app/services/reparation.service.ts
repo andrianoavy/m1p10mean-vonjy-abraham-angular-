@@ -32,6 +32,13 @@ export class ReparationService {
     return this.http.get(this.base_url+'/entree/info',{params: params }).pipe(catchError(this.handleError));
   }
 
+  updateEntree(dataBody:any):Observable<any>{
+    return this.http.put(this.base_url + '/entree',dataBody).pipe(catchError(this.handleError));
+  }
+
+  deleteReparation(dataBody:any):Observable<any>{
+    return this.http.delete(this.base_url+ '/reparation',{body:dataBody}).pipe(catchError(this.handleError));
+  }
 
   // Error
   handleError(error: HttpErrorResponse) {

@@ -17,6 +17,8 @@ export class ListeEntreeComponent {
 
   entreeForm : FormGroup;
 
+  search :string = "";
+
   constructor(private entree: EntreeService,private voitureServ: VoitureService,public formBuilder: FormBuilder,public router: Router) {
     this.entreeForm = this.formBuilder.group({
       designation : [''],
@@ -55,4 +57,5 @@ export class ListeEntreeComponent {
       this.getAllEntrees()
   }
 
+  onSearch(event: KeyboardEvent){}
 }

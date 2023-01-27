@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  roleAs:string;
+
   endpoint: string = environment.baseApiURL+'/auth'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
@@ -36,6 +38,8 @@ export class AuthService {
         //   this.currentUser = res;
         //   this.router.navigate(['user-profile/' + res.msg._id]);
         // });
+        localStorage.setItem('STATE', 'true');
+        localStorage.setItem('ROLE', res.role);
         this.router.navigate(['voitures']);
       });
   }
@@ -44,16 +48,32 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
-  get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
-    return authToken !== null ? true : false;
+  // get isLoggedIn(): boolean {
+  //   let authToken = localStorage.getItem('access_token');
+  //   return authToken !== null ? true : false;
+  // }
+
+  isLoggedIn() {
+    const loggedIn = localStorage.getItem('STATE');
+    if (loggedIn == 'true')
+      this.isLogin = true;
+    else
+      this.isLogin = false;
+    return this.isLogin;
   }
 
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');
+    localStorage.setItem('STATE', 'false');
+    localStorage.setItem('ROLE', '');
     if (removeToken == null) {
       this.router.navigate(['login']);
     }
+  }
+
+  getRole() {
+    this.roleAs = ''+localStorage.getItem('ROLE');
+    return this.roleAs;
   }
 
 
