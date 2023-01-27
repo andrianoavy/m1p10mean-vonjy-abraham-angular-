@@ -34,6 +34,8 @@ import { ReparationTableComponent } from './components/reparation-table/reparati
 import { ListeEntreesHistoriqueComponent } from './components/liste-entrees-historique/liste-entrees-historique.component';
 import { getFrenchPaginatorIntl } from './providers/mat-paginator-fr';
 import { PageFacturesComponent } from './components/page-factures/page-factures.component';
+import { StatistiqueFinanceComponent } from './components/statistique-finance/statistique-finance.component';
+import { CalculBeneficeComponent } from './components/calcul-benefice/calcul-benefice.component';
 
 registerLocaleData(localeFr,'fr-MG', localeFrExtra)
 
@@ -55,6 +57,8 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     ReparationTableComponent,
     ListeEntreesHistoriqueComponent,
     PageFacturesComponent,
+    StatistiqueFinanceComponent,
+    CalculBeneficeComponent,
   ],
   imports: [
     MatPaginatorModule,

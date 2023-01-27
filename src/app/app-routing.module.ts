@@ -12,6 +12,8 @@ import { ReparationHistoriqueComponent } from './components/reparation-historiqu
 import { PageFacturesComponent } from './components/page-factures/page-factures.component';
   
 import { AuthGuard } from './guards/auth.guard';
+import { StatistiqueFinanceComponent } from './components/statistique-finance/statistique-finance.component';
+import { CalculBeneficeComponent } from './components/calcul-benefice/calcul-benefice.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'voitures/factures', component: PageFacturesComponent , canActivate: [AuthGuard],data:{role:"Client"}},
   { path: 'voitures/:immatriculation', component: PageDetailsVoitureComponent , canActivate: [AuthGuard],data:{role:"Client"}},
   { path: 'voitures/:immatriculation/historique', component: ReparationHistoriqueComponent , canActivate: [AuthGuard],data:{role:"Client"}},
+  { path: 'statistique', component:StatistiqueFinanceComponent, canActivate: [AuthGuard] ,data:{role:"Finance"}},
+  { path: 'benefice', component:CalculBeneficeComponent, canActivate: [AuthGuard] ,data:{role:"Finance"}},
 ];
 
 @NgModule({
