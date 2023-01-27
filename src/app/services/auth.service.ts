@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  isLogin = false;
 
   roleAs:string;
 
@@ -34,10 +35,6 @@ export class AuthService {
       .post<any>(`${this.endpoint}/login`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token);
-        // this.getUserProfile(res._id).subscribe((res) => {
-        //   this.currentUser = res;
-        //   this.router.navigate(['user-profile/' + res.msg._id]);
-        // });
         localStorage.setItem('STATE', 'true');
         localStorage.setItem('ROLE', res.role);
         this.router.navigate(['voitures']);
@@ -47,11 +44,6 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('access_token');
   }
-
-  // get isLoggedIn(): boolean {
-  //   let authToken = localStorage.getItem('access_token');
-  //   return authToken !== null ? true : false;
-  // }
 
   isLoggedIn() {
     const loggedIn = localStorage.getItem('STATE');

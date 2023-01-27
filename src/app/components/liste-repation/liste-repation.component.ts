@@ -130,4 +130,8 @@ export class ListeRepationComponent {
     console.log(reparationId);
     this.modalModification = true;
   }
+
+  closeModal(){
+    this.modalModification = false;
+  }
 }
