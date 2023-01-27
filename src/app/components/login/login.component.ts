@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,15 +13,26 @@ export class LoginComponent {
   constructor(
     public formBuilder: FormBuilder,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {
     if(authService.isLoggedIn())
       router.navigate(['voitures'])
 
-    this.loginForm = this.formBuilder.group({
-      email: [''],
-      password: [''],
+    
+    let email;
+    let pswrd;
+
+    this.route.queryParams.subscribe(params => {
+        email = [params['email']] || [''];
+        pswrd = [params['password']] || ['']
     });
+
+    this.loginForm = this.formBuilder.group({
+      email: email,
+      password: pswrd,
+    });
+
   }
   ngOnInit() {}
   loginUser() {

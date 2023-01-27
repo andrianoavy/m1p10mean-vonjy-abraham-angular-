@@ -31,6 +31,7 @@ export class ReparationHistoriqueComponent implements OnInit, OnDestroy{
     this.fetchHistorique()
   }
   fetchHistorique() {
+    this.isLoading = true
     this.voiture$ = this.voitureService.getVoitureWithHistorique(this.immatriculation,{page:this.page, itemCount:this.itemCount})    
     .subscribe(
       {

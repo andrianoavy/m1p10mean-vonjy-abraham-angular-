@@ -16,4 +16,7 @@ export class AppComponent {
   isClient(): any {
     return this.authService.getRole() === "Client"
   }
+  isAtelier(): any {
+    return this.authService.getRole() === "Atelier"
+  }
 }

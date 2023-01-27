@@ -21,6 +21,18 @@
     <li><a routerLinkActive="active" [routerLink]="['/voitures','factures']">Factures</a></li>
   </ul>
 </nav>
+
+<nav *ngIf="isAtelier()" class="sub-nav">
+  <ul>
+    <li>
+        Espace Atelier
+    </li>
+  </ul>
+  <ul>
+    <li><a routerLinkActive="active" routerLink="/entrees">Liste des entrées</a></li>
+  </ul>
+</nav>
+
 <main>
   <router-outlet></router-outlet>
 </main>
