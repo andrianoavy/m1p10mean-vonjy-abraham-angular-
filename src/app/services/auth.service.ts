@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import {
@@ -17,6 +17,7 @@ export class AuthService {
   isLogin = false;
 
   roleAs:string;
+  loginSubject = new Subject<string>();
 
   endpoint: string = environment.baseApiURL+'/auth'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -37,6 +38,7 @@ export class AuthService {
         localStorage.setItem('access_token', res.token);
         localStorage.setItem('STATE', 'true');
         localStorage.setItem('ROLE', res.role);
+        this.loginSubject.next(res.role);
         this.router.navigate(['voitures']);
       });
   }
@@ -51,6 +53,8 @@ export class AuthService {
       this.isLogin = true;
     else
       this.isLogin = false;
+    console.log(this.isLogin);
+    
     return this.isLogin;
   }
 
@@ -58,6 +62,7 @@ export class AuthService {
     let removeToken = localStorage.removeItem('access_token');
     localStorage.setItem('STATE', 'false');
     localStorage.setItem('ROLE', '');
+    this.loginSubject.next('');
     if (removeToken == null) {
       this.router.navigate(['login']);
     }
