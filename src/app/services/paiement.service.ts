@@ -6,19 +6,21 @@ import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class FactureService {
+export class PaiementService {
+  valider(id: any) :Observable<any>{
+      return this.http.put(this.endpoint,{id:id}).pipe(catchError(this.handleError));
+    }
+  
 
-  endpoint: string = environment.baseApiURL + '/factures'
+  endpoint: string = environment.baseApiURL + '/paiement'
 
-  getFactures(options: { page: number ; itemCount: number ; search: string ; showPaid: boolean  }):Observable<any> {
-    let api = this.endpoint;
-    return this.http.get(api, {params:{...options}}).pipe(catchError(this.handleError));
+  addPaiement(paiement: any) : Observable<any>{
+    return this.http.post(this.endpoint, paiement).pipe(catchError(this.handleError))
   }
 
-  
-  getFacture(idFacture: string | null): Observable<any> {
-    let api = `${this.endpoint}/${idFacture}`;
-    return this.http.get(api).pipe(catchError(this.handleError));
+  getPaiements(options: { page: number ; itemCount: number ; search: string ; showValid: boolean  }):Observable<any> {
+    let api = this.endpoint;
+    return this.http.get(api, {params:{...options}}).pipe(catchError(this.handleError));
   }
 
   constructor(private http: HttpClient) { }

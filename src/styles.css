@@ -83,6 +83,14 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: white;
     background-color: darkgreen;
 }
+.not-paid {
+    color: white;
+    background-color: darkred;
+}
+.paid {
+    color: white;
+    background-color: darkgreen;
+}
 .article-head{
     display: inline-flex;
     align-items: center;

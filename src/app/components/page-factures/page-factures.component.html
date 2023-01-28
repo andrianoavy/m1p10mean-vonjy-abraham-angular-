@@ -4,8 +4,10 @@
         <div *ngIf="factures; else no_factures">
             <div class="article-head">
                 <hgroup>
-                    <h1>Liste des factures</h1>                    
+                    <h1>Liste des factures</h1>
                 </hgroup>
+                <label for="showPaid"><input type="checkbox" id="showPaid" name="showPaid" [(ngModel)]="showPaid"
+                        role="switch" (change)="fetchFactures()"> Montrer les factures payées</label>
             </div>
             <hr>
             <div *ngIf="factures.length>0; else no_factures">
@@ -23,9 +25,14 @@
                         <tr *ngFor="let facture of factures">
                             <td>{{facture.resumeVoiture}}</td>
                             <td>{{facture.dateFacture | date:'shortDate'}}</td>
-                            <td>{{facture.totalHT | currency:'MGA':'symbol-narrow':'1.1-1'}}</td>
-                            <td>{{facture.totalTTC | currency:'MGA':'symbol-narrow':'1.1-1'}}</td>
-                            <td>{{(facture.paid)?"Payée":"Non payée"}}</td>
+                            <td>{{facture.totalHT.total | currency:'MGA':'symbol-narrow':'1.1-1'}}</td>
+                            <td>{{facture.totalTTC.montant | currency:'MGA':'symbol-narrow':'1.1-1'}}</td>
+                            <td><span class="badge"
+                                    [ngClass]="(facture.paid)?'paid':'not-paid'">{{(facture.paid)?"Payée":"Non
+                                    payée"}}</span></td>
+                            <td><a [routerLink]="[facture._id]">Détails</a></td>
+                            <td><button *ngIf="!facture.paid" [routerLink]="[facture._id,'paiement']">Payer la
+                                    facture</button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -26,7 +26,7 @@ import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PageDetailsVoitureComponent } from './components/page-details-voiture/page-details-voiture.component';
 import { ReparationTrComponent } from './components/reparation-tr/reparation-tr.component';
-import { CurrencyPipe, DatePipe, registerLocaleData } from '@angular/common';
+import { CurrencyPipe, DatePipe, registerLocaleData, } from '@angular/common';
 import localeFr from '@angular/common/locales/fr-MG';
 import localeFrExtra from '@angular/common/locales/extra/fr-MG';
 import { ReparationHistoriqueComponent } from './components/reparation-historique/reparation-historique.component';
@@ -34,6 +34,9 @@ import { ReparationTableComponent } from './components/reparation-table/reparati
 import { ListeEntreesHistoriqueComponent } from './components/liste-entrees-historique/liste-entrees-historique.component';
 import { getFrenchPaginatorIntl } from './providers/mat-paginator-fr';
 import { PageFacturesComponent } from './components/page-factures/page-factures.component';
+import { DetailsFactureComponent } from './components/details-facture/details-facture.component';
+import { PageClientPaiementComponent } from './components/page-client-paiement/page-client-paiement.component';
+import { PageFinancePaiementsComponent } from './components/page-finance-paiements/page-finance-paiements.component';
 
 registerLocaleData(localeFr,'fr-MG', localeFrExtra)
 
@@ -55,6 +58,9 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     ReparationTableComponent,
     ListeEntreesHistoriqueComponent,
     PageFacturesComponent,
+    DetailsFactureComponent,
+    PageClientPaiementComponent,
+    PageFinancePaiementsComponent,
   ],
   imports: [
     MatPaginatorModule,

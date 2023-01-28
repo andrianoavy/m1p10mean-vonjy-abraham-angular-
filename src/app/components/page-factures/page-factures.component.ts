@@ -17,7 +17,7 @@ export class PageFacturesComponent implements OnInit,OnDestroy{
   page:number = 0;
   itemCount:number = 10;
   total:number|undefined;
-  isLoading: boolean = true;
+  isLoading: boolean = true;  
 
   constructor(private factureService:FactureService) {}
 
@@ -30,6 +30,8 @@ export class PageFacturesComponent implements OnInit,OnDestroy{
 
   fetchFactures(){
     this.isLoading = true
+    if(this.factures$)
+    this.factures$.unsubscribe()
     this.factures$ = this.factureService.getFactures({page:this.page, itemCount:this.itemCount, search:this.search, showPaid:this.showPaid})
     .subscribe(
       {
