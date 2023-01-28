@@ -67,7 +67,7 @@
                 <input type="hidden" value="1" />
                 <div class="grid">
                   <div class="descReparation">
-                    <h2>{{ todo.description }} <br> Montant : {{todo.montantAchat + todo.montantPrestation}} Ariary</h2>
+                    <h2>{{ todo.description }} <br> Montant : {{todo.montantAchat + todo.montantPrestation}} Ar</h2>
                   </div>
                   <div class="actionReparation">
                     <a class="modifier" data-tooltip="Modifier" (click)="onModification(todo.reparationId)">M</a>
@@ -105,7 +105,7 @@
                 <article *ngFor="let complete of completed">
                   <div class="grid">
                     <div class="descReparation">
-                      <h2>{{ complete.description }}<br> Montant : {{complete.montantAchat + complete.montantPrestation}} Ariary</h2>
+                      <h2>{{ complete.description }}<br> Montant : {{complete.montantAchat + complete.montantPrestation}} Ar</h2>
                     </div>
                     <div class="actionReparation"></div>
                   </div>

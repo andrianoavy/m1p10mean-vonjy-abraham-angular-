@@ -23,4 +23,7 @@ export class AppComponent implements OnInit{
   isAtelier(): any {
     return this.role  === "Atelier"
   }
+  isFinancier():any{
+    return this.authService.getRole() === "Finance"
+  }
 }

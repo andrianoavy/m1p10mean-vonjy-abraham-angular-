@@ -37,7 +37,7 @@ export class AuthGuard implements CanActivate {
           this.router.navigate(['voitures']);
         }
         if(userRole == "Finance"){
-          this.router.navigate(['paiements']);
+          this.router.navigate(['statistique']);
         }
         return false;
       }

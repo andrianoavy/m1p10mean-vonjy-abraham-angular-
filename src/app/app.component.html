@@ -23,6 +23,11 @@
   </ul>
 </nav>
 
+<div class="grid" *ngIf="isFinancier()">
+  <div class="nav1"><a  routerLinkActive="active" [routerLink]="['/statistique']">Statistiques</a></div>
+  <div class="nav2"><a  routerLinkActive="active" [routerLink]="['/benefice']">Bénéfice</a></div>
+  <div class="nav2"><a  routerLinkActive="active" [routerLink]="['/paiements']">Paiements</a></div>
+</div>
 <main>
   <router-outlet></router-outlet>
 </main>

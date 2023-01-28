@@ -37,6 +37,8 @@ import { PageFacturesComponent } from './components/page-factures/page-factures.
 import { DetailsFactureComponent } from './components/details-facture/details-facture.component';
 import { PageClientPaiementComponent } from './components/page-client-paiement/page-client-paiement.component';
 import { PageFinancePaiementsComponent } from './components/page-finance-paiements/page-finance-paiements.component';
+import { StatistiqueFinanceComponent } from './components/statistique-finance/statistique-finance.component';
+import { CalculBeneficeComponent } from './components/calcul-benefice/calcul-benefice.component';
 
 registerLocaleData(localeFr,'fr-MG', localeFrExtra)
 
@@ -61,6 +63,8 @@ registerLocaleData(localeFr,'fr-MG', localeFrExtra)
     DetailsFactureComponent,
     PageClientPaiementComponent,
     PageFinancePaiementsComponent,
+    StatistiqueFinanceComponent,
+    CalculBeneficeComponent,
   ],
   imports: [
     MatPaginatorModule,
