@@ -3,19 +3,14 @@
     <li><strong>Mikara-Car</strong></li>
   </ul>
   <ul>
-    <li class=""><a *ngIf="this.authService.isLoggedIn" class="p-2 profil">Profil</a></li>
+    <li class=""><strong *ngIf="this.authService.isLoggedIn" class="p-2 profil">{{role}}</strong></li>
     <li><a *ngIf="!this.authService.isLoggedIn" class="p-2 text-white" routerLinkActive="active" routerLink="/login">Identification</a></li>
     <li><a *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active"
       routerLinkActive="active" routerLink="/inscription">Inscription</a></li>
     <li><button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn deconnexion">Deconnexion</button></li>
   </ul>
 </nav>
-<nav *ngIf="isClient()" class="sub-nav">
-  <ul>
-    <li>
-        Espace Client
-    </li>
-  </ul>
+<nav *ngIf="isClient()" class="sub-nav">  
   <ul>
     <li><button class="outline" routerLinkActive="active" routerLink="/voitures">Voitures</button></li>
     <li><button class="outline" routerLinkActive="active" [routerLink]="['/voitures','factures']">Factures</button></li>
@@ -24,12 +19,7 @@
 
 <nav *ngIf="isAtelier()" class="sub-nav">
   <ul>
-    <li>
-        Espace Atelier
-    </li>
-  </ul>
-  <ul>
-    <li><button class="outline" routerLinkActive="active" routerLink="/entrees">Liste des entrées</></li>
+    <li><button class="outline" routerLinkActive="active" routerLink="/entrees">Liste des entrées</button></li>
   </ul>
 </nav>
 
