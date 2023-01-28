@@ -61,3 +61,29 @@ ul a{
 strong{
     font-size: 18px;
 }
+
+.nav1{
+    text-align: center;
+  }
+  .nav2{
+    text-align: center;
+  }
+  
+  .nav1 a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: none;
+    border: 2px solid blue;
+    border-radius: 5px;
+    color: blue;
+  }
+  
+  .nav2 a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: none;
+    border: 2px solid blue;
+    border-radius: 5px;
+    color: blue;
+  }
+  
