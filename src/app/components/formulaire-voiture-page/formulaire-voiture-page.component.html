@@ -1,12 +1,12 @@
 <div class="auth-wrapper">
-    <h1>Formulaire Voiture</h1>
+    <!-- <h1>Formulaire Voiture</h1> -->
     <div *ngIf="!loading else showLoader">
         <form
       class="form-signin"
       [formGroup]="voitureForm"
       (ngSubmit)="saveVoiture()"
     >
-      <h3 class="h3 mb-3 font-weight-normal text-center">Informations de la voiture</h3>
+      <h3 class="h3 mb-3 font-weight-normal text-center">Ajouter une voiture</h3>
       <div class="form-group">
         <label>Numéro de plaque d'immatriculation</label>
         <input
@@ -37,7 +37,7 @@
           required
         />
       </div>
-      <button type="submit" class="btn btn-block btn-primary">Enregistrer</button>
+      <button type="submit" class="btn btn-block btn-primary ajouter">Enregistrer</button>
     </form>
     </div>
     <ng-template #showLoader>

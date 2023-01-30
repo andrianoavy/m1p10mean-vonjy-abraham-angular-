@@ -1,6 +1,6 @@
 <td>{{voiture?.numImmatricul}}</td>
 <td>{{voiture?.marque}}</td>
 <td>{{voiture?.modele}}</td>
-<td><span class="badge" [ngClass]="getBadge()">{{voiture?.etat}}</span></td>
-<td><a role="button" class="outline" [routerLink]="[voiture?.numImmatricul]" >Détails</a></td>
-<td><a role="button" class="outline secondary" [routerLink]="[voiture?.numImmatricul,'historique']" >Historique</a></td>
+<td class="badge-td"><span class="badge grid" [ngClass]="getBadge()">{{voiture?.etat}}</span></td>
+<td><a role="button" class="outline detail" [routerLink]="[voiture?.numImmatricul]" >Détails</a></td>
+<td><a role="button" class="outline secondary historique" [routerLink]="[voiture?.numImmatricul,'historique']" >Historique</a></td>

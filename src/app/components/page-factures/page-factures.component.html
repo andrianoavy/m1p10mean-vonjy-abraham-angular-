@@ -27,7 +27,7 @@
                             <td>{{facture.dateFacture | date:'shortDate'}}</td>
                             <td>{{facture.totalHT.total | currency:'MGA':'symbol-narrow':'1.1-1'}}</td>
                             <td>{{facture.totalTTC.montant | currency:'MGA':'symbol-narrow':'1.1-1'}}</td>
-                            <td><span class="badge"
+                            <td class="status"><span class="badge grid"
                                     [ngClass]="(facture.paid)?'paid':'not-paid'">{{(facture.paid)?"Payée":"Non
                                     payée"}}</span></td>
                             <td><a [routerLink]="[facture._id]">Détails</a></td>
