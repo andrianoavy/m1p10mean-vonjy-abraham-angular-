@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ReparationService } from 'src/app/services/reparation.service';
 import { Reparation } from 'src/app/models/reparation';
 
@@ -19,28 +25,42 @@ import { Reparation } from 'src/app/models/reparation';
 export class ListeRepationComponent {
   entree_id: string = '';
 
-  reparationForm : FormGroup;
+  reparationForm: FormGroup;
 
-  infoEntree : any[];
-  reparations : any[];
+  infoEntree: any[];
+  reparations: any[];
 
-  todos:Reparation[]=[];
+  todos: Reparation[] = [];
 
-  completed:Reparation[]=[];
+  completed: Reparation[] = [];
 
-  modalModification:boolean = false;
+  modalModification: boolean = false;
 
-  constructor(private routeActive: ActivatedRoute,public formBuilder: FormBuilder,private reparation: ReparationService) {
+  constructor(
+    private routeActive: ActivatedRoute,
+    public formBuilder: FormBuilder,
+    private reparation: ReparationService
+  ) {
+    // this.reparationForm = this.formBuilder.group({
+    //   entreeId : [''],
+    //   description : [''],
+    //   designationPrestation :[''],
+    //   montantPrestation :[''],
+    //   designationAchat :[''],
+    //   montantAchat :[''],
+    //   dateDebut :[''],
+    //   dateFin :['']
+    // })
     this.reparationForm = this.formBuilder.group({
-      entreeId : [''],
-      description : [''],
-      designationPrestation :[''],
-      montantPrestation :[''],
-      designationAchat :[''],
-      montantAchat :[''],
-      dateDebut :[''],
-      dateFin :['']
-    })
+      entreeId: new FormControl('', {}),
+      description: [''],
+      designationPrestation: [''],
+      montantPrestation: [''],
+      designationAchat: [''],
+      montantAchat: [''],
+      dateDebut: [''],
+      dateFin: [''],
+    });
   }
 
   ngOnInit() {
@@ -51,28 +71,31 @@ export class ListeRepationComponent {
     this.getAllReparation();
   }
 
-  getInfoEntree(){
-    this.reparation.getInfoEntree(this.entree_id).subscribe(result=>{
+  getInfoEntree() {
+    this.reparation.getInfoEntree(this.entree_id).subscribe((result) => {
       this.infoEntree = result.data;
-    })
+    });
   }
 
-  getAllReparation(){
-    this.reparation.findReparation(this.entree_id).subscribe(result => {
+  getAllReparation() {
+    this.reparation.findReparation(this.entree_id).subscribe((result) => {
       let data = result.data;
-      for(let i = 0; i < data.length;i++){
-        if(data[i].Etat == "Terminer"){
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].Etat == 'Terminer') {
           this.completed.push(data[i]);
-        }
-        else{
-          this.todos.push(data[i])
+        } else {
+          this.todos.push(data[i]);
         }
       }
-    })
+    });
   }
 
-  insertReparation(){
-      this.reparation.addReparation(this.reparationForm.value).subscribe(res=>{
+  insertReparation() {
+    console.log(this.infoEntree);
+
+    this.reparation
+      .addReparation(this.reparationForm.value)
+      .subscribe((res) => {
         this.getAllReparation();
         this.reparationForm.reset();
         window.location.reload();
@@ -81,7 +104,7 @@ export class ListeRepationComponent {
 
   onDrop(event: CdkDragDrop<Reparation[]>) {
     if (event.previousContainer === event.container) {
-      console.log('move :'+event.container.data);      
+      console.log('move :' + event.container.data);
       moveItemInArray(
         event.container.data,
         event.previousIndex,
@@ -96,42 +119,56 @@ export class ListeRepationComponent {
       );
 
       const dataTerminer = event.container.data;
-      for(let i = 0; i < dataTerminer.length;i++){
+      for (let i = 0; i < dataTerminer.length; i++) {
         const body = {
-          "entreeId": this.entree_id,
-          "reparationId": dataTerminer[i].reparationId
+          entreeId: this.entree_id,
+          reparationId: dataTerminer[i].reparationId,
         };
-        this.reparation.updateReparation(body).subscribe(res=>{});
+        this.reparation.updateReparation(body).subscribe((res) => {});
       }
     }
   }
 
-  onValideSortie(){
+  onValideSortie() {
     const body = {
-      "entreeId" : this.entree_id
-    }
-    this.reparation.updateEntree(body).subscribe(res=>{
+      entreeId: this.entree_id,
+    };
+    this.reparation.updateEntree(body).subscribe((res) => {
       window.location.reload();
     });
   }
 
-
-  onDeleteEntree(reparationId:any){
+  onDeleteEntree(reparationId: any) {
     const body = {
-      "entreeId": this.entree_id,
-      "reparationId": reparationId
-    }
-    this.reparation.deleteReparation(body).subscribe(res=>{
+      entreeId: this.entree_id,
+      reparationId: reparationId,
+    };
+    this.reparation.deleteReparation(body).subscribe((res) => {
       window.location.reload();
-    })
+    });
   }
 
-  onModification(reparationId:any){
+  onModification(reparationId: any) {
     console.log(reparationId);
     this.modalModification = true;
   }
 
-  closeModal(){
+  closeModal() {
     this.modalModification = false;
+  }
+
+  creatDateRangeValidator(){
+    const form = this.reparationForm.value;
+
+    const start: Date = form.dateDebut;
+    const end: Date = form.dateFin;
+
+    if (start && end) {
+      const isRangeValid = end.getTime() - start.getTime() > 0;
+
+      return isRangeValid ? null : { dateRange: true };
+    }
+
+    return null;
   }
 }
