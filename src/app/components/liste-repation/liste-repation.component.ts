@@ -41,18 +41,9 @@ export class ListeRepationComponent {
     public formBuilder: FormBuilder,
     private reparation: ReparationService
   ) {
-    // this.reparationForm = this.formBuilder.group({
-    //   entreeId : [''],
-    //   description : [''],
-    //   designationPrestation :[''],
-    //   montantPrestation :[''],
-    //   designationAchat :[''],
-    //   montantAchat :[''],
-    //   dateDebut :[''],
-    //   dateFin :['']
-    // })
+    
     this.reparationForm = this.formBuilder.group({
-      entreeId: new FormControl('', {}),
+      entreeId: [''],
       description: [''],
       designationPrestation: [''],
       montantPrestation: [''],
