@@ -91,6 +91,15 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: white;
     background-color: darkgreen;
 }
+.not-valid{
+    color: white;
+    background-color: darkgoldenrod;
+}
+.refresh-button {
+    width: auto;
+    display: inline-block;
+    border-radius: 10rem;
+}   
 .article-head{
     display: inline-flex;
     align-items: center;
