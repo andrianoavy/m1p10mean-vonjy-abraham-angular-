@@ -137,8 +137,11 @@
             id="desc"
             formControlName="description"
             placeholder="Description de la reparation"
-            required
+            [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"
           />
+          <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+            <div *ngIf="f['description'].errors['required']">Vous devez completer la description de la reparation</div>
+          </div>
 
           <div class="grid">
             <label for="descPrestation">
@@ -148,8 +151,11 @@
                 id="descPrestation"
                 formControlName="designationPrestation"
                 placeholder="Description de la prestation."
-                required
+                [ngClass]="{ 'is-invalid': submitted && f['designationPrestation'].errors }"
               />
+              <div *ngIf="submitted && f['designationPrestation'].errors" class="invalid-feedback">
+                <div *ngIf="f['designationPrestation'].errors['required']">Vous devez completer la description de la prestation</div>
+              </div>
             </label>
 
             <label for="montantPrestation">
@@ -160,7 +166,12 @@
                 formControlName="montantPrestation"
                 min="0"
                 placeholder="Montant de la prestation"
-              />
+                [ngClass]="{ 'is-invalid': submitted && f['montantPrestation'].errors }"
+                />
+                <div *ngIf="submitted && f['montantPrestation'].errors" class="invalid-feedback">
+                  <div *ngIf="f['montantPrestation'].errors['required']">Vous devez completer le montant de la prestation</div>
+                  <div *ngIf="f['montantPrestation'].errors['pattern']">Vous devez completer le montant de la prestation par des chiffres</div>
+                </div>
             </label>
           </div>
 
@@ -172,8 +183,11 @@
                 id="descAchat"
                 formControlName="designationAchat"
                 placeholder="Description de l'achat des pieces."
-                required
+                [ngClass]="{ 'is-invalid': submitted && f['designationAchat'].errors }"
               />
+              <div *ngIf="submitted && f['designationAchat'].errors" class="invalid-feedback">
+                <div *ngIf="f['designationAchat'].errors['required']">Vous devez completer la description de l'achat</div>
+              </div>
             </label>
 
             <label for="montantAchat">
@@ -184,7 +198,12 @@
                 formControlName="montantAchat"
                 min="0"
                 placeholder="Montant de l'achat des pieces."
-              />
+                [ngClass]="{ 'is-invalid': submitted && f['montantAchat'].errors }"
+                />
+                <div *ngIf="submitted && f['montantAchat'].errors" class="invalid-feedback">
+                  <div *ngIf="f['montantAchat'].errors['required']">Vous devez completer le montant de l'achat</div>
+                  <div *ngIf="f['montantAchat'].errors['pattern']">Vous devez completer le montant de l'achat par des chiffres</div>
+                </div>
             </label>
           </div>
 
@@ -198,8 +217,11 @@
                 id="dateEntree"
                 formControlName="dateDebut"
                 placeholder="Date debut de la reparation"
-                required
+                [ngClass]="{ 'is-invalid': submitted && f['dateDebut'].errors }"
               />
+              <div *ngIf="submitted && f['dateDebut'].errors" class="invalid-feedback">
+                <div *ngIf="f['dateDebut'].errors['required']">Completez la date début</div>
+              </div>
             </label>
 
             <label for="dateSortie">
@@ -209,7 +231,15 @@
                 id="dateSortie"
                 formControlName="dateFin"
                 placeholder="Date fin de la reparation"
+                [ngClass]="{ 'is-invalid': submitted && f['dateFin'].errors }"
               />
+              <div *ngIf="submitted && f['dateFin'].errors" class="invalid-feedback">
+                <div *ngIf="f['dateFin'].errors['required']">Completez la date de fin</div>
+                <div *ngIf="f['dateFin'].errors['matching']">
+                  Date fin doit être superieur date à la début
+                </div>
+              </div>
+              
             </label>
           </div>
 

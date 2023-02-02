@@ -53,7 +53,6 @@ export class AuthService {
       this.isLogin = true;
     else
       this.isLogin = false;
-    console.log(this.isLogin);
     
     return this.isLogin;
   }

@@ -155,3 +155,12 @@
   .bonValide h1{
     color: #13d627;
   }
+
+  .invalid-feedback{
+    color: red;
+  }
+
+  .is-invalid{
+    border: 1px solid red;
+    color: red;
+  }

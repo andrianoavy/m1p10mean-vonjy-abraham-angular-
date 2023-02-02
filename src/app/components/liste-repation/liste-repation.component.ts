@@ -7,6 +7,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -16,6 +17,7 @@ import {
 } from '@angular/forms';
 import { ReparationService } from 'src/app/services/reparation.service';
 import { Reparation } from 'src/app/models/reparation';
+import Validation from 'src/app/utils/validation';
 
 @Component({
   selector: 'app-liste-repation',
@@ -36,30 +38,47 @@ export class ListeRepationComponent {
 
   modalModification: boolean = false;
 
+  submitted = false;
+
   constructor(
     private routeActive: ActivatedRoute,
     public formBuilder: FormBuilder,
     private reparation: ReparationService
-  ) {
-    
-    this.reparationForm = this.formBuilder.group({
-      entreeId: [''],
-      description: [''],
-      designationPrestation: [''],
-      montantPrestation: [''],
-      designationAchat: [''],
-      montantAchat: [''],
-      dateDebut: [''],
-      dateFin: [''],
-    });
-  }
+  ) {}
 
   ngOnInit() {
     this.routeActive.queryParams.subscribe((params) => {
       this.entree_id = params['entree_id'];
     });
+
     this.getInfoEntree();
     this.getAllReparation();
+
+    this.reparationForm = this.formBuilder.group(
+      {
+        entreeId: ['', Validators.required],
+        description: ['', Validators.required],
+        designationPrestation: ['', Validators.required],
+        montantPrestation: [
+          '',
+          [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+        ],
+        designationAchat: ['', Validators.required],
+        montantAchat: [
+          '',
+          [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+        ],
+        dateDebut: ['', Validators.required],
+        dateFin: ['', Validators.required],
+      },
+      {
+        validators: [Validation.controlDate('dateDebut', 'dateFin')],
+      }
+    );
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.reparationForm.controls;
   }
 
   getInfoEntree() {
@@ -82,8 +101,11 @@ export class ListeRepationComponent {
   }
 
   insertReparation() {
-    console.log(this.infoEntree);
+    this.submitted = true;
 
+    if (this.reparationForm.invalid) {
+      return;
+    }
     this.reparation
       .addReparation(this.reparationForm.value)
       .subscribe((res) => {
@@ -148,7 +170,7 @@ export class ListeRepationComponent {
     this.modalModification = false;
   }
 
-  creatDateRangeValidator(){
+  creatDateRangeValidator() {
     const form = this.reparationForm.value;
 
     const start: Date = form.dateDebut;
